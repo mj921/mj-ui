@@ -4,8 +4,12 @@ import Col from './col/index';
 import Button from './button/index';
 import Menu from './menu/index';
 import MenuItemGroup from './menuItemGroup/index';
+import Radio from './radio/index';
+import RadioGroup from './radioGroup/index';
 import Row from './row/index';
 import SubMenu from './subMenu/index';
+import Table from './table/index';
+import TableColumn from './tableColumn/index';
 import Transfer from './transfer/index';
 
 const components:{[key: string]: VueConstructor} = {
@@ -14,8 +18,12 @@ const components:{[key: string]: VueConstructor} = {
     Menu,
     MenuItem,
     MenuItemGroup,
+    Radio,
+    RadioGroup,
     Row,
     SubMenu,
+    Table,
+    TableColumn,
     Transfer
 }
 const MjUi:PluginObject<Vue> = {

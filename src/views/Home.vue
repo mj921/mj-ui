@@ -11,6 +11,7 @@
                     </mj-sub-menu>
                     <mj-sub-menu>
                         <template slot="title">表单</template>
+                        <mj-menu-item @click="routerPush('/radio')" index="radio">Radio 单选框</mj-menu-item>
                         <mj-menu-item @click="routerPush('/transfer')" index="transfer">Transfer 穿梭框</mj-menu-item>
                     </mj-sub-menu>
                     <mj-sub-menu>
@@ -55,7 +56,6 @@ export default class Home extends Vue {
         height: 100%;
         @include box-sizing(border-box);
         padding-left: 200px;
-        padding-right: 20px;
         .menu{
             position: absolute;
             left: 0;
@@ -68,6 +68,10 @@ export default class Home extends Vue {
             width: 100%;
             height: 100%;
             overflow: auto;
+            padding-bottom: 20px;
+            padding-right: 20px;
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
         }
     }
 }

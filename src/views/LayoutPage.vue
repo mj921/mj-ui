@@ -53,13 +53,42 @@
             <mj-col :span="4"><div class="col"></div></mj-col>
             <mj-col :span="4"><div class="col"></div></mj-col>
         </mj-row>
+        <div class="mj-page-title2">Row 属性</div>
+        <mj-api-table :data="rowAttr"></mj-api-table>
+        <div class="mj-page-title2">Col 属性</div>
+        <mj-api-table :data="colAttr"></mj-api-table>
     </div>
 </template>
 <script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component';
 @Component
-export default class LayoutPage extends Vue {}
+export default class LayoutPage extends Vue {
+    rowAttr = [
+        {
+            prop: "gutter",
+            desc: "栅格间隔",
+            type: "number",
+            optional: "—",
+            defaultVal: "0"
+        }
+    ];
+    colAttr = [
+        {
+            prop: "span",
+            desc: "栅格占据列数",
+            type: "number",
+            optional: "—",
+            defaultVal: "24"
+        }, {
+            prop: "offset",
+            desc: "栅格左侧间隔列数",
+            type: "number",
+            optional: "—",
+            defaultVal: "0"
+        }
+    ];
+}
 </script>
 <style lang="scss" scoped>
     .mj-row{

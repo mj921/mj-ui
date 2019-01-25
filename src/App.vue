@@ -4,6 +4,7 @@
     </div>
 </template>
 
+<style lang="scss" src="./assets/theme/iconfont.scss"></style>
 <style lang="scss">
 #app {
     font-family: "微软雅黑";

@@ -15,8 +15,8 @@
             </div>
         </div>
         <div class="mj-transfer--button">
-            <button @click="moveLeft">&lt;</button><br/>
-            <button @click="moveRight">&gt;</button>
+            <button :class="{'mj-transfer--active': rightSelectNum > 0}" @click="moveLeft"><i class="iconfont icon-left"></i></button><br/>
+            <button :class="{'mj-transfer--active': leftSelectNum > 0}" @click="moveRight"><i class="iconfont icon-right"></i></button>
         </div>
         <div class="mj-transfer--right">
             <dt class="mj-transfer--title">{{titles && titles.length > 1 ? titles[0] : "列表1"}}</dt>
@@ -55,19 +55,31 @@ interface TransferItem {
 export default class MjTransfer extends Vue{
     @Prop({type: Array})
     data!: {key: string, label: string, disabled: boolean}[];
-    @Prop({type: Array})
+    @Prop({type: Array, required: true})
     value!: number[];
     @Prop({type: Array})
     titles!: string[];
     list: TransferItem[] = [];
+    leftSelectNum: number = 0;
+    rightSelectNum: number = 0;
+    leftNum: number = 0;
+    rightNum: number = 0;
     initList() {
         this.list = this.data.map((item, i) => {
+            let type;
+            if (this.value.indexOf(i) > -1) {
+                type = "right";
+                this.rightNum++;
+            } else {
+                type = "left";
+                this.leftNum++;
+            }
             return {
                 key: item.key,
                 label: item.label,
                 disabled: !!item.disabled,
                 data: item,
-                type: this.value.indexOf(i) > -1 ? "right" : "left",
+                type,
                 active: false
             }
         })
@@ -75,23 +87,35 @@ export default class MjTransfer extends Vue{
     selectItem(item: TransferItem) {
         if (!item.disabled) {
             item.active = !item.active;
+            let addBase: number = item.active ? 1 : -1;
+            if (item.type === "left") {
+                this.leftSelectNum += addBase;
+            } else {
+                this.rightSelectNum += addBase;
+            }
         }
     }
     moveRight() {
-        this.list.forEach(item => {
-            if (item.type === "left" && item.active) {
-                item.type = "right";
-                item.active = false;
-            }
-        })
+        if (this.leftSelectNum > 0) {
+            this.list.forEach(item => {
+                if (item.type === "left" && item.active) {
+                    item.type = "right";
+                    item.active = false;
+                }
+            })
+            this.leftSelectNum = 0;
+        }
     }
     moveLeft() {
-        this.list.forEach(item => {
-            if (item.type === "right" && item.active) {
-                item.type = "left";
-                item.active = false;
-            }
-        })
+        if (this.rightSelectNum > 0) {
+            this.list.forEach(item => {
+                if (item.type === "right" && item.active) {
+                    item.type = "left";
+                    item.active = false;
+                }
+            })
+            this.rightSelectNum = 0;
+        }
     }
     created() {
         this.initList();
@@ -147,6 +171,8 @@ export default class MjTransfer extends Vue{
                 margin: 5px auto;
                 width: 40px;
                 height: 40px;
+                line-height: 40px;
+                text-align: center;
                 border-radius: 50%;
                 border: 1px solid $borderColor;
                 background-color: transparent;
@@ -154,6 +180,14 @@ export default class MjTransfer extends Vue{
                 cursor: pointer;
                 outline: none;
                 color: $textColor;
+                &.mj-transfer--active{
+                    color: $white;
+                    background-color: $blue;
+                    border-color: $blue;
+                }
+                .iconfont{
+                    font-size: 24px;
+                }
             }
         }
     }
