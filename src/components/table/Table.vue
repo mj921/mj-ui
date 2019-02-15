@@ -8,13 +8,32 @@
                         :key="i"
                         :style="{
                             'width': column.width,
-                            'min-width': column.minWidth
+                            'min-width': column.minWidth,
+                            'text-align': column.align
                         }">{{column.label}}</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(row, i) in data" :key="'tr' + i">
-                    <td v-for="(column, j) in columnList" :key="'tr' + i + ',td' + j">{{row[column.prop]}}</td>
+                <template v-if="data && data.length > 0">
+                    <tr v-for="(row, i) in data" :key="'tr' + i">
+                        <template v-for="(column, j) in columnList">
+                            <td
+                                :key="'tr' + i + ',td' + j"
+                                :style="{
+                                    'text-align': column.align
+                                }">
+                                <div v-if="column.$slot">
+                                    {{column.$slot}}
+                                </div>
+                                <div v-else>
+                                    {{column.formatter ? column.formatter(row, i) : row[column.prop]}}
+                                </div>
+                            </td>
+                        </template>
+                    </tr>
+                </template>
+                <tr v-else>
+                    <td class="mj-table--empty" :colspan="columnList.length">{{emptyText}}</td>
                 </tr>
             </tbody>
         </table>
@@ -31,6 +50,8 @@ import MjTableColumn from '@/components/tableColumn';
 export default class MjTable extends Vue {
     @Prop({type: Array, required: true})
     data!: Object[];
+    @Prop({type: String, default: "暂无数据"})
+    emptyText!: string;
     @Provide()
     addColumn(column: MjTableColumn) {
         this.columnList.push(column);
@@ -52,6 +73,22 @@ export default class MjTable extends Vue {
                 font-size: 14px;
                 color: $black;
                 text-align: left;
+            }
+        }
+        tbody{
+            tr{
+                &:hover{
+                    background-color: $lightGray;
+                }
+                td{
+                    &.mj-table--empty{
+                        text-align: center;
+                        line-height: 60px;
+                        &:hover{
+                            background-color: $white;
+                        }
+                    }
+                }
             }
         }
     }

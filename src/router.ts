@@ -32,6 +32,11 @@ export default new Router({
                     path: "/transfer",
                     name: "transfer",
                     component: () => import("./views/TransferPage.vue")
+                },
+                {
+                    path: "/table",
+                    name: "table",
+                    component: () => import("./views/TablePage.vue")
                 }
             ],
             redirect: "/button"

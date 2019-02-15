@@ -15,6 +15,10 @@ export default class MjTableColumn extends Vue {
     width!: string;
     @Prop({type: String})
     minWidth!: string;
+    @Prop({type: String, default: "left"})
+    align!: string;
+    @Prop({type: Function})
+    formatter!: (row: object) => any;
     @Inject({default: undefined})
     addColumn!: (column: MjTableColumn) => void;
     created() {

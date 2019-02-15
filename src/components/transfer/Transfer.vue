@@ -19,7 +19,7 @@
             <button :class="{'mj-transfer--active': leftSelectNum > 0}" @click="moveRight"><i class="iconfont icon-right"></i></button>
         </div>
         <div class="mj-transfer--right">
-            <dt class="mj-transfer--title">{{titles && titles.length > 1 ? titles[0] : "列表1"}}</dt>
+            <dt class="mj-transfer--title">{{titles && titles.length > 1 ? titles[0] : "列表2"}}</dt>
             <div class="mj-transfer--list">
                 <template v-for="item in list">
                     <dl

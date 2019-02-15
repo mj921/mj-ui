@@ -4,6 +4,8 @@
         <div class="mj-page-title2">基础用法</div>
         <div class="mj-page-direction">基础的穿梭框用法</div>
         <mj-transfer :data="data1" v-model="value1"></mj-transfer>
+        <div class="mj-page-title2">Transfer 属性</div>
+        <mj-api-table :data="transferAttr"></mj-api-table>
     </div>
 </template>
 <script lang="ts">
@@ -25,7 +27,28 @@ export default class TransferPage extends Vue {
         key: "key4",
         label: "key4"
     }];
-    value1 = [1]
+    value1 = [1];
+    transferAttr = [
+        {
+            prop: "data",
+            desc: "穿梭框数据列表",
+            type: "{key: string, label: string, disabled: boolean}[]",
+            optional: "—",
+            defaultVal: "—"
+        }, {
+            prop: "value",
+            desc: "右边数据的索引",
+            type: "number[]",
+            optional: "—",
+            defaultVal: "—"
+        }, {
+            prop: "titles",
+            desc: "穿梭框标题",
+            type: "string[]",
+            optional: "—",
+            defaultVal: "['列表1', '列表2']"
+        }
+    ]
 }
 </script>
 <style lang="scss" scoped>

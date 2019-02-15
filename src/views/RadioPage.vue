@@ -5,6 +5,8 @@
         <div class="mj-page-direction">基础的单选框用法</div>
         <mj-radio v-model="radio1" label="1">1</mj-radio>
         <mj-radio v-model="radio1" label="2">2</mj-radio>
+        <div class="mj-page-title2">Radio 属性</div>
+        <mj-api-table :data="radioAttr"></mj-api-table>
     </div>
 </template>
 <script lang="ts">
@@ -13,6 +15,13 @@ import Component from 'vue-class-component';
 @Component
 export default class RadioPage extends Vue {
     radio1 = "";
+    radioAttr = [{
+        prop: "label",
+        desc: "选项值",
+        type: "string | number | boolean",
+        optional: "—",
+        defaultVal: "—"
+    }]
 }
 </script>
 <style lang="scss" scoped>
