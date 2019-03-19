@@ -10,7 +10,10 @@
                             'width': column.width,
                             'min-width': column.minWidth,
                             'text-align': column.align
-                        }">{{column.label}}</th>
+                        }"
+                    >
+                        {{column.label}}
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -21,9 +24,10 @@
                                 :key="'tr' + i + ',td' + j"
                                 :style="{
                                     'text-align': column.align
-                                }">
-                                <div v-if="column.$slot">
-                                    {{column.$slot}}
+                                }"
+                            >
+                                <div v-if="column.$scopedSlots && Object.keys(column.$scopedSlots).length > 0">
+                                    <table-slot :vvnode="column.$scopedSlots" :row="row"></table-slot>
                                 </div>
                                 <div v-else>
                                     {{column.formatter ? column.formatter(row, i) : row[column.prop]}}
@@ -47,6 +51,21 @@ import { Prop, Provide } from 'vue-property-decorator';
 import MjTableColumn from '@/components/tableColumn';
 
 @Component
+class TableSlot extends Vue {
+    @Prop({type: Object})
+    vvnode!: any;
+    @Prop({type: Object})
+    row!: any;
+    render (h:Vue.CreateElement) {
+        return h("div", [this.vvnode.default(this.row)]);
+    }
+}
+
+@Component({
+    components: {
+        "table-slot": TableSlot
+    }
+})
 export default class MjTable extends Vue {
     @Prop({type: Array, required: true})
     data!: Object[];

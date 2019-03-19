@@ -29,6 +29,17 @@
             <mj-table-column prop="height" label="高" width="100px"></mj-table-column>
             <mj-table-column prop="area" label="面积" width="100px" :formatter="fmt"></mj-table-column>
         </mj-table>
+        <div class="mj-page-title2">slot插槽</div>
+        <div class="mj-page-direction">slot插槽</div>
+        <mj-table :data="data2">
+            <mj-table-column prop="width" label="宽" width="100px"></mj-table-column>
+            <mj-table-column prop="height" label="高" width="100px"></mj-table-column>
+            <mj-table-column prop="area" label="面积" width="100px">
+                <template v-slot="row">
+                    {{row.height * row.width}}
+                </template>
+            </mj-table-column>
+        </mj-table>
         <div class="mj-page-title2">Table 属性</div>
         <mj-api-table :data="tableAttr"></mj-api-table>
         <div class="mj-page-title2">TableColumn 属性</div>
