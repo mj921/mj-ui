@@ -8,6 +8,7 @@ import Radio from './radio/index';
 import RadioGroup from './radioGroup/index';
 import Row from './row/index';
 import SubMenu from './subMenu/index';
+import Switch from './switch/index';
 import Table from './table/index';
 import TableColumn from './tableColumn/index';
 import Transfer from './transfer/index';
@@ -22,6 +23,7 @@ const components:{[key: string]: VueConstructor} = {
     RadioGroup,
     Row,
     SubMenu,
+    Switch,
     Table,
     TableColumn,
     Transfer
