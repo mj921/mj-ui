@@ -40,6 +40,9 @@ export default class MjMenuItem extends Vue {
 <style lang="scss">
 .mj-menu-item{
     padding-left: 20px;
+    &:hover{
+        color: $blue;
+    }
     &.mj-menu-item__actived{
         color: $blue;
     }

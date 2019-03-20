@@ -1,10 +1,10 @@
 <template>
     <div>
         <div class="mj-page-title1">Radio 单选框</div>
-        <div class="mj-page-title2">基础用法</div>
-        <div class="mj-page-direction">基础的单选框用法</div>
-        <mj-radio v-model="radio1" label="1">1</mj-radio>
-        <mj-radio v-model="radio1" label="2">2</mj-radio>
+        <mj-code title="基础用法" describe="基础的单选框用法" :code="code1">
+            <mj-radio v-model="radio1" label="1">1</mj-radio>
+            <mj-radio v-model="radio1" label="2">2</mj-radio>
+        </mj-code>
         <div class="mj-page-title2">Radio 属性</div>
         <mj-api-table :data="radioAttr"></mj-api-table>
     </div>
@@ -12,9 +12,11 @@
 <script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component';
+import codeJson from '@/docCodes/radio';
 @Component
 export default class RadioPage extends Vue {
     radio1 = "";
+    code1 = codeJson.code1;
     radioAttr = [{
         prop: "label",
         desc: "选项值",

@@ -1,32 +1,37 @@
 <template>
     <div>
         <div class="mj-page-title1">Switch 开关</div>
-        <div class="mj-page-title2">基础用法</div>
-        <div class="mj-page-direction">基础的单选框用法</div>
-        <mj-switch v-model="switch1"></mj-switch>
-        <div class="mj-page-title2">文字描述</div>
-        <!-- <div class="mj-page-direction">基础的单选框用法</div> -->
-        <mj-switch v-model="switch2" notActiveText="关闭" activeText="打开"></mj-switch>
-        <div class="mj-page-title2">禁用</div>
-        <!-- <div class="mj-page-direction">基础的单选框用法</div> -->
-        <mj-switch v-model="switch3" disabled></mj-switch>
-        <div class="mj-page-title2">自定义背景色</div>
-        <!-- <div class="mj-page-direction">基础的单选框用法</div> -->
-        <mj-switch v-model="switch4" notActiveColor="#123456" activeColor="#836e90"></mj-switch>
+        <mj-code title="基础用法" describe="基础的单选框用法" :code="code1">
+            <mj-switch v-model="switch1"></mj-switch>
+        </mj-code>
+        <mj-code title="文字描述" :code="code2">
+            <mj-switch v-model="switch2" notActiveText="关闭" activeText="打开"></mj-switch>
+        </mj-code>
+        <mj-code title="禁用" :code="code3">
+            <mj-switch v-model="switch3" disabled></mj-switch>
+        </mj-code>
+        <mj-code title="自定义背景色" :code="code4">
+            <mj-switch v-model="switch4" notActiveColor="#123456" activeColor="#836e90"></mj-switch>
+        </mj-code>
         <div class="mj-page-title2">Switch 属性</div>
-        <mj-api-table :data="radioAttr"></mj-api-table>
+        <mj-api-table :data="switchAttr"></mj-api-table>
     </div>
 </template>
 <script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component';
+import codeJson from '@/docCodes/switch';
 @Component
 export default class RadioPage extends Vue {
     switch1 = true;
     switch2 = "打开";
     switch3 = true;
     switch4 = true;
-    radioAttr = [{
+    code1 = codeJson.code1;
+    code2 = codeJson.code2;
+    code3 = codeJson.code3;
+    code4 = codeJson.code4;
+    switchAttr = [{
         prop: "value / v-model",
         desc: "绑定值",
         type: "string | number | boolean",

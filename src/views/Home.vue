@@ -72,9 +72,10 @@ export default class Home extends Vue {
         .main{
             width: 100%;
             height: 100%;
-            overflow: auto;
+            overflow-y: auto;
             padding-bottom: 20px;
             padding-right: 20px;
+            padding-left: 20px;
             box-sizing: border-box;
             -webkit-box-sizing: border-box;
         }

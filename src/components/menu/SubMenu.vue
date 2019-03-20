@@ -42,9 +42,6 @@ export default class MjSubMenu extends Vue {
         font-size: 14px;
         color: #383737;
         cursor: default;
-        &:hover{
-            color: $blue;
-        }
     }
 }
 </style>

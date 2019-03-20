@@ -1,58 +1,58 @@
 <template>
     <div>
         <div class="mj-page-title1">Layout 布局</div>
-        <div class="mj-page-title2">基础用法</div>
-        <div class="mj-page-direction">基础的布局用法</div>
-        <mj-row>
-            <mj-col><div class="col"></div></mj-col>
-            <mj-col :span="12"><div class="col"></div></mj-col>
-            <mj-col :span="12"><div class="col"></div></mj-col>
-            <mj-col :span="8"><div class="col"></div></mj-col>
-            <mj-col :span="8"><div class="col"></div></mj-col>
-            <mj-col :span="8"><div class="col"></div></mj-col>
-            <mj-col :span="6"><div class="col"></div></mj-col>
-            <mj-col :span="6"><div class="col"></div></mj-col>
-            <mj-col :span="6"><div class="col"></div></mj-col>
-            <mj-col :span="6"><div class="col"></div></mj-col>
-            <mj-col :span="4"><div class="col"></div></mj-col>
-            <mj-col :span="4"><div class="col"></div></mj-col>
-            <mj-col :span="4"><div class="col"></div></mj-col>
-            <mj-col :span="4"><div class="col"></div></mj-col>
-            <mj-col :span="4"><div class="col"></div></mj-col>
-            <mj-col :span="4"><div class="col"></div></mj-col>
-        </mj-row>
-        <div class="mj-page-title2">分栏间隔</div>
-        <div class="mj-page-direction">存在间隔</div>
-        <mj-row :gutter="20">
-            <mj-col><div class="col"></div></mj-col>
-            <mj-col :span="12"><div class="col"></div></mj-col>
-            <mj-col :span="12"><div class="col"></div></mj-col>
-            <mj-col :span="8"><div class="col"></div></mj-col>
-            <mj-col :span="8"><div class="col"></div></mj-col>
-            <mj-col :span="8"><div class="col"></div></mj-col>
-            <mj-col :span="6"><div class="col"></div></mj-col>
-            <mj-col :span="6"><div class="col"></div></mj-col>
-            <mj-col :span="6"><div class="col"></div></mj-col>
-            <mj-col :span="6"><div class="col"></div></mj-col>
-            <mj-col :span="4"><div class="col"></div></mj-col>
-            <mj-col :span="4"><div class="col"></div></mj-col>
-            <mj-col :span="4"><div class="col"></div></mj-col>
-            <mj-col :span="4"><div class="col"></div></mj-col>
-            <mj-col :span="4"><div class="col"></div></mj-col>
-            <mj-col :span="4"><div class="col"></div></mj-col>
-        </mj-row>
-        <div class="mj-page-title2">分栏偏移</div>
-        <div class="mj-page-direction">分栏偏移</div>
-        <mj-row :gutter="20">
-            <mj-col :span="6"><div class="col"></div></mj-col>
-            <mj-col :span="6" :offset="3"><div class="col"></div></mj-col>
-            <mj-col :span="6" :offset="3"><div class="col"></div></mj-col>
-            <mj-col :span="6"><div class="col"></div></mj-col>
-            <mj-col :span="4" :offset="2"><div class="col"></div></mj-col>
-            <mj-col :span="4"><div class="col"></div></mj-col>
-            <mj-col :span="4"><div class="col"></div></mj-col>
-            <mj-col :span="4"><div class="col"></div></mj-col>
-        </mj-row>
+        <mj-code title="基础用法" describe="基础的布局用法" :code="code1">
+            <mj-row>
+                <mj-col><div class="col"></div></mj-col>
+                <mj-col :span="12"><div class="col"></div></mj-col>
+                <mj-col :span="12"><div class="col"></div></mj-col>
+                <mj-col :span="8"><div class="col"></div></mj-col>
+                <mj-col :span="8"><div class="col"></div></mj-col>
+                <mj-col :span="8"><div class="col"></div></mj-col>
+                <mj-col :span="6"><div class="col"></div></mj-col>
+                <mj-col :span="6"><div class="col"></div></mj-col>
+                <mj-col :span="6"><div class="col"></div></mj-col>
+                <mj-col :span="6"><div class="col"></div></mj-col>
+                <mj-col :span="4"><div class="col"></div></mj-col>
+                <mj-col :span="4"><div class="col"></div></mj-col>
+                <mj-col :span="4"><div class="col"></div></mj-col>
+                <mj-col :span="4"><div class="col"></div></mj-col>
+                <mj-col :span="4"><div class="col"></div></mj-col>
+                <mj-col :span="4"><div class="col"></div></mj-col>
+            </mj-row>
+        </mj-code>
+        <mj-code title="分栏间隔" describe="存在间隔" :code="code2">
+            <mj-row :gutter="20">
+                <mj-col><div class="col"></div></mj-col>
+                <mj-col :span="12"><div class="col"></div></mj-col>
+                <mj-col :span="12"><div class="col"></div></mj-col>
+                <mj-col :span="8"><div class="col"></div></mj-col>
+                <mj-col :span="8"><div class="col"></div></mj-col>
+                <mj-col :span="8"><div class="col"></div></mj-col>
+                <mj-col :span="6"><div class="col"></div></mj-col>
+                <mj-col :span="6"><div class="col"></div></mj-col>
+                <mj-col :span="6"><div class="col"></div></mj-col>
+                <mj-col :span="6"><div class="col"></div></mj-col>
+                <mj-col :span="4"><div class="col"></div></mj-col>
+                <mj-col :span="4"><div class="col"></div></mj-col>
+                <mj-col :span="4"><div class="col"></div></mj-col>
+                <mj-col :span="4"><div class="col"></div></mj-col>
+                <mj-col :span="4"><div class="col"></div></mj-col>
+                <mj-col :span="4"><div class="col"></div></mj-col>
+            </mj-row>
+        </mj-code>
+        <mj-code title="分栏偏移" describe="分栏偏移" :code="code2">
+            <mj-row :gutter="20">
+                <mj-col :span="6"><div class="col"></div></mj-col>
+                <mj-col :span="6" :offset="3"><div class="col"></div></mj-col>
+                <mj-col :span="6" :offset="3"><div class="col"></div></mj-col>
+                <mj-col :span="6"><div class="col"></div></mj-col>
+                <mj-col :span="4" :offset="2"><div class="col"></div></mj-col>
+                <mj-col :span="4"><div class="col"></div></mj-col>
+                <mj-col :span="4"><div class="col"></div></mj-col>
+                <mj-col :span="4"><div class="col"></div></mj-col>
+            </mj-row>
+        </mj-code>
         <div class="mj-page-title2">Row 属性</div>
         <mj-api-table :data="rowAttr"></mj-api-table>
         <div class="mj-page-title2">Col 属性</div>
@@ -62,8 +62,12 @@
 <script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component';
+import codeJson from '@/docCodes/layout';
 @Component
 export default class LayoutPage extends Vue {
+    code1 = codeJson.code1;
+    code2 = codeJson.code2;
+    code3 = codeJson.code3;
     rowAttr = [
         {
             prop: "gutter",

@@ -1,45 +1,40 @@
 <template>
     <div class="mj-page">
         <div class="mj-page-title1">Table 表格</div>
-        <div class="mj-page-title2">基础用法</div>
-        <div class="mj-page-direction">基础的表格用法</div>
-        <mj-table :data="data1">
-            <mj-table-column prop="prop" label="参数" width="100px"></mj-table-column>
-            <mj-table-column prop="desc" label="说明" width="200px"></mj-table-column>
-            <mj-table-column prop="type" label="类型" width="100px"></mj-table-column>
-            <mj-table-column prop="optional" label="可选值" width="200px"></mj-table-column>
-            <mj-table-column prop="defaultVal" label="默认值" width="100px"></mj-table-column>
-        </mj-table>
-        <mj-code>
-            <pre v-pre>
-                <div>{{123}}</div>
-            </pre>
+        <mj-code title="基础用法" describe="基础的表格用法" :code="code1">
+            <mj-table :data="data1">
+                <mj-table-column prop="prop" label="参数" width="100px"></mj-table-column>
+                <mj-table-column prop="desc" label="说明" width="200px"></mj-table-column>
+                <mj-table-column prop="type" label="类型" width="100px"></mj-table-column>
+                <mj-table-column prop="optional" label="可选值" width="200px"></mj-table-column>
+                <mj-table-column prop="defaultVal" label="默认值" width="100px"></mj-table-column>
+            </mj-table>
         </mj-code>
-        <div class="mj-page-title2">自定义列内容</div>
-        <div class="mj-page-direction">formatter自定义格式化方法</div>
-        <mj-table :data="data2">
-            <mj-table-column prop="width" label="宽" width="100px"></mj-table-column>
-            <mj-table-column prop="height" label="高" width="100px"></mj-table-column>
-            <mj-table-column prop="area" label="面积" width="100px" :formatter="fmt"></mj-table-column>
-        </mj-table>
-        <div class="mj-page-title2">列表为空</div>
-        <div class="mj-page-direction">列表为空时列表展示</div>
-        <mj-table :data="[]">
-            <mj-table-column prop="width" label="宽" width="100px"></mj-table-column>
-            <mj-table-column prop="height" label="高" width="100px"></mj-table-column>
-            <mj-table-column prop="area" label="面积" width="100px" :formatter="fmt"></mj-table-column>
-        </mj-table>
-        <div class="mj-page-title2">slot插槽</div>
-        <div class="mj-page-direction">slot插槽</div>
-        <mj-table :data="data2">
-            <mj-table-column prop="width" label="宽" width="100px"></mj-table-column>
-            <mj-table-column prop="height" label="高" width="100px"></mj-table-column>
-            <mj-table-column prop="area" label="面积" width="100px">
-                <template v-slot="row">
-                    {{row.height * row.width}}
-                </template>
-            </mj-table-column>
-        </mj-table>
+        <mj-code title="自定义列内容" describe="formatter自定义格式化方法" :code="code2">
+            <mj-table :data="data2">
+                <mj-table-column prop="width" label="宽" width="100px"></mj-table-column>
+                <mj-table-column prop="height" label="高" width="100px"></mj-table-column>
+                <mj-table-column prop="area" label="面积" width="100px" :formatter="fmt"></mj-table-column>
+            </mj-table>
+        </mj-code>
+        <mj-code title="列表为空" describe="列表为空时列表展示" :code="code3">
+            <mj-table :data="[]">
+                <mj-table-column prop="width" label="宽" width="100px"></mj-table-column>
+                <mj-table-column prop="height" label="高" width="100px"></mj-table-column>
+                <mj-table-column prop="area" label="面积" width="100px" :formatter="fmt"></mj-table-column>
+            </mj-table>
+        </mj-code>
+        <mj-code title="slot插槽" describe="slot插槽" :code="code4">
+            <mj-table :data="data2">
+                <mj-table-column prop="width" label="宽" width="100px"></mj-table-column>
+                <mj-table-column prop="height" label="高" width="100px"></mj-table-column>
+                <mj-table-column prop="area" label="面积" width="100px">
+                    <template v-slot="row">
+                        {{row.height * row.width}}
+                    </template>
+                </mj-table-column>
+            </mj-table>
+        </mj-code>
         <div class="mj-page-title2">Table 属性</div>
         <mj-api-table :data="tableAttr"></mj-api-table>
         <div class="mj-page-title2">TableColumn 属性</div>
@@ -49,6 +44,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component';
+import codeJson from '@/docCodes/table';
 @Component
 export default class TablePage extends Vue {
     data1 = [
@@ -78,6 +74,10 @@ export default class TablePage extends Vue {
             height: 200
         }
     ]
+    code1 = codeJson.code1;
+    code2 = codeJson.code2;
+    code3 = codeJson.code3;
+    code4 = codeJson.code4;
     fmt(row:any, index:number) {
         return row.width * row.height;
     }

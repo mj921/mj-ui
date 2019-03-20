@@ -1,9 +1,9 @@
 <template>
     <div>
         <div class="mj-page-title1">Transfer 穿梭框</div>
-        <div class="mj-page-title2">基础用法</div>
-        <div class="mj-page-direction">基础的穿梭框用法</div>
-        <mj-transfer :data="data1" v-model="value1"></mj-transfer>
+        <mj-code title="基础用法" describe="基础的穿梭框用法" :code="code1">
+            <mj-transfer :data="data1" v-model="value1"></mj-transfer>
+        </mj-code>
         <div class="mj-page-title2">Transfer 属性</div>
         <mj-api-table :data="transferAttr"></mj-api-table>
     </div>
@@ -11,6 +11,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component';
+import codeJson from '@/docCodes/transfer';
 @Component
 export default class TransferPage extends Vue {
     data1 = [{
@@ -28,6 +29,7 @@ export default class TransferPage extends Vue {
         label: "key4"
     }];
     value1 = [1];
+    code1 = codeJson.code1;
     transferAttr = [
         {
             prop: "data",
