@@ -37,3 +37,21 @@ npm run test:unit
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+- table
+- date-picker
+- input
+- select
+- ~~radio~~
+- ~~row~~
+- ~~col~~
+- ~~button~~
+- ~~switch~~
+- message
+- ~~transfer~~
+- checkbox
+- form
+- tab
+- menu
+- dalog
+- pagination

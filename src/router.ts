@@ -29,6 +29,11 @@ export default new Router({
                     component: () => import("./views/RadioPage.vue")
                 },
                 {
+                    path: "/select",
+                    name: "select",
+                    component: () => import("./views/SelectPage.vue")
+                },
+                {
                     path: "/switch",
                     name: "switch",
                     component: () => import("./views/SwitchPage.vue")
