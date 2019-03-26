@@ -31,17 +31,19 @@ export default class MjOption extends Vue {
     @Inject("selectOption")
     selectOption!: (value: any) => void;
     selected = false;
+    _option = {};
     handleClick (e: Event) {
         e.stopPropagation();
         if (!this.disabled) {
-            this.selectOption(this.value);
+            this.selectOption(this._option);
         }
     }
     selectedOption (selected: boolean) {
         this.selected = selected;
     }
     created () {
-        this.addOption({value: this.value, label: this.label || this.value, option: this});
+        this._option = {value: this.value, label: this.label || this.value, option: this};
+        this.addOption(this._option);
     }
 }
 </script>
