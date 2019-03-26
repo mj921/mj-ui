@@ -47,6 +47,11 @@ export default new Router({
                     path: "/table",
                     name: "table",
                     component: () => import("./views/TablePage.vue")
+                },
+                {
+                    path: "/tag",
+                    name: "tag",
+                    component: () => import("./views/TagPage.vue")
                 }
             ],
             redirect: "/button"

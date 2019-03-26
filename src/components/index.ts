@@ -13,6 +13,7 @@ import SubMenu from './subMenu/index';
 import Switch from './switch/index';
 import Table from './table/index';
 import TableColumn from './tableColumn/index';
+import Tag from './tag/index';
 import Transfer from './transfer/index';
 
 const components:{[key: string]: VueConstructor} = {
@@ -30,6 +31,7 @@ const components:{[key: string]: VueConstructor} = {
     Switch,
     Table,
     TableColumn,
+    Tag,
     Transfer
 }
 const MjUi:PluginObject<Vue> = {

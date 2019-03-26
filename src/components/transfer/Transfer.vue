@@ -15,8 +15,8 @@
             </div>
         </div>
         <div class="mj-transfer--button">
-            <button :class="{'mj-transfer--active': rightSelectNum > 0}" @click="moveLeft"><i class="iconfont icon-left"></i></button><br/>
-            <button :class="{'mj-transfer--active': leftSelectNum > 0}" @click="moveRight"><i class="iconfont icon-right"></i></button>
+            <button :class="{'mj-transfer--active': rightSelectNum > 0}" @click="moveLeft"><i class="mj-icon-left"></i></button><br/>
+            <button :class="{'mj-transfer--active': leftSelectNum > 0}" @click="moveRight"><i class="mj-icon-right"></i></button>
         </div>
         <div class="mj-transfer--right">
             <dt class="mj-transfer--title">{{titles && titles.length > 1 ? titles[0] : "列表2"}}</dt>

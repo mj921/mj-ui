@@ -8,6 +8,8 @@
             }"
             @click="handleClick">
             <input type="text" :value="label" disabled>
+            <i v-show="!openFlag" class="mj-icon-drop-down"></i>
+            <i v-show="openFlag" class="mj-icon-drop-up"></i>
         </div>
         <transition>
             <div v-show="openFlag" class="mj-select--options">
@@ -33,6 +35,8 @@ export default class MjSelect extends Vue {
         default: false
     })
     disabled!: boolean;
+    // @Prop({type: Boolean, default: false})
+    // multiple!: boolean;
     label = "";
     openFlag = false;
     options: {[key: string]: Option} = {};
@@ -82,47 +86,17 @@ export default class MjSelect extends Vue {
         border-radius: 2px;
         position: relative;
         cursor: pointer;
-        &::before{
-            content: "";
-            display: block;
-            border: 7px solid transparent;
-            border-top-color: $textColor;
-            width: 0;
+        .mj-icon-drop-down{
             position: absolute;
             right: 12px;
-            top: 15px;
-        }
-        &::after{
-            content: "";
-            display: block;
-            border: 5px solid transparent;
-            border-top-color: $white;
-            width: 0;
-            position: absolute;
-            right: 14px;
-            top: 15px;
+            top: 9px;
         }
         &.mj-select--open{
             border-color: $blue;
-            &::before{
-                content: "";
-                display: block;
-                border: 7px solid transparent;
-                border-bottom-color: $textColor;
-                width: 0;
+            .mj-icon-drop-up{
                 position: absolute;
                 right: 12px;
                 top: 9px;
-            }
-            &::after{
-                content: "";
-                display: block;
-                border: 5px solid transparent;
-                border-bottom-color: $white;
-                width: 0;
-                position: absolute;
-                right: 14px;
-                top: 13px;
             }
         }
         input{

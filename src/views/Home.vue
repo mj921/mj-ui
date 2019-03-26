@@ -19,6 +19,7 @@
                     <mj-sub-menu>
                         <template slot="title">数据</template>
                         <mj-menu-item @click="routerPush('/table')" index="table">Table 表格</mj-menu-item>
+                        <mj-menu-item @click="routerPush('/tag')" index="tag">tag 标签</mj-menu-item>
                     </mj-sub-menu>
                     <mj-sub-menu>
                         <template slot="title">导航</template>
