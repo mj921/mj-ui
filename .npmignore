@@ -1,5 +1,6 @@
 .DS_Store
 node_modules
+/dist
 
 /tests/e2e/videos/
 /tests/e2e/screenshots/
@@ -21,3 +22,16 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw*
+
+
+src/
+packages/
+public/
+/vue.config.js
+/babel.config.js
+tests/
+/cypress.json
+/jest.config.js
+/postcss.config.js
+/.browserslistrc
+/.eslintrc.js

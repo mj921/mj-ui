@@ -30,14 +30,14 @@ export default{
     data () {
         return {
             selected: false,
-            _option: {}
+            option: {}
         }
     },
     methods: {
         handleClick (e) {
             e.stopPropagation();
             if (!this.disabled) {
-                this.selectOption(this._option);
+                this.selectOption(this.option);
             }
         },
         selectedOption (selected) {
@@ -45,8 +45,8 @@ export default{
         }
     },
     created () {
-        this._option = {value: this.value, label: this.label || this.value, option: this};
-        this.addOption(this._option);
+        this.option = {value: this.value, label: this.label || this.value, option: this};
+        this.addOption(this.option);
     }
 }
 </script>
