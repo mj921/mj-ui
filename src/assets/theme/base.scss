@@ -1,0 +1,18 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+@mixin box-sizing($value){
+    box-sizing: $value;
+    -webkit-box-sizing: $value;
+}
+$white: #fff;
+$blue: #2f83f1;
+$black: #1a1919;
+$textColor: #aca9a9;
+$red: #ee3e3e;
+$yellow: #f7aa04;
+$green: #3cf603;
+$disabled: #e9e9e9;
+$borderColor: #ebeef5;
+$lightGray: #f7f5f5;

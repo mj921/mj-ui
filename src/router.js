@@ -5,19 +5,61 @@ import Home from './views/Home.vue'
 Vue.use(Router)
 
 export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: Home
-    },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-    }
-  ]
+    mode: 'history',
+    base: process.env.BASE_URL,
+    routes: [
+        {
+            path: '/',
+            name: 'index',
+            component: Home,
+            children: [
+                {
+                    path: "/button",
+                    name: "button",
+                    component: () => import("./views/ButtonPage.vue")
+                },
+                {
+                    path: "/layout",
+                    name: "layout",
+                    component: () => import("./views/LayoutPage.vue")
+                },
+                {
+                    path: "/icon",
+                    name: "icon",
+                    component: () => import("./views/IconPage.vue")
+                },
+                {
+                    path: "/radio",
+                    name: "radio",
+                    component: () => import("./views/RadioPage.vue")
+                },
+                {
+                    path: "/select",
+                    name: "select",
+                    component: () => import("./views/SelectPage.vue")
+                },
+                {
+                    path: "/switch",
+                    name: "switch",
+                    component: () => import("./views/SwitchPage.vue")
+                },
+                {
+                    path: "/transfer",
+                    name: "transfer",
+                    component: () => import("./views/TransferPage.vue")
+                },
+                {
+                    path: "/table",
+                    name: "table",
+                    component: () => import("./views/TablePage.vue")
+                },
+                {
+                    path: "/tag",
+                    name: "tag",
+                    component: () => import("./views/TagPage.vue")
+                }
+            ],
+            redirect: "/button"
+        }
+    ]
 })

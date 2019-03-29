@@ -1,0 +1,36 @@
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background-color: #F5F5F5;
+    border-radius: 4px;
+}
+
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track {
+    background-color: #ccc;
+    border-radius: 4px;
+}
+
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb {
+    background-color: #9e9e9e;
+    border-radius: 4px;
+}
+.mj-page-title1{
+    font-size: 28px;
+    font-weight: 400;
+    color: #1f2f3d;
+}
+.mj-page-title2{
+    font-size: 22px;
+    font-weight: 400;
+    color: #1f2f3d;
+    margin: 55px 0 20px;
+}
+.mj-page-direction{
+    margin: 1em 0;
+    font-size: 14px;
+    line-height: 1.5em;
+    color: $textColor;
+}
