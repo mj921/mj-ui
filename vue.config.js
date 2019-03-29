@@ -1,6 +1,7 @@
 const path = require('path')
 
 module.exports = {
+    publicPath: process.env.NODE_ENV === 'production' ? "/dist/" : "/",
     chainWebpack: config => {
         config.resolve.alias.set("~", path.resolve('packages'));
         const types = ['vue-modules', 'vue', 'normal-modules', 'normal']
