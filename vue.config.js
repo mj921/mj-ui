@@ -1,7 +1,7 @@
 const path = require('path')
 
 module.exports = {
-    publicPath: process.env.NODE_ENV === 'production' ? "/dist/" : "/",
+    publicPath: process.env.NODE_ENV === 'production' ? "/mj-ui/dist/" : "/",
     chainWebpack: config => {
         config.resolve.alias.set("~", path.resolve('packages'));
         const types = ['vue-modules', 'vue', 'normal-modules', 'normal']
