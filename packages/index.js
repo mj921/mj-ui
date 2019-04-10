@@ -1,7 +1,8 @@
-import MenuItem from './menuItem/index';
-import Col from './col/index';
 import Button from './button/index';
+import Checkbox from './checkbox/index';
+import Col from './col/index';
 import Menu from './menu/index';
+import MenuItem from './menuItem/index';
 import MenuItemGroup from './menuItemGroup/index';
 import Option from './option/index';
 import Radio from './radio/index';
@@ -17,6 +18,7 @@ import Transfer from './transfer/index';
 
 const components = {
     Button,
+    Checkbox,
     Col,
     Menu,
     MenuItem,

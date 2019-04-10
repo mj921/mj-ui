@@ -12,6 +12,7 @@
                     </mj-sub-menu>
                     <mj-sub-menu>
                         <template slot="title">表单</template>
+                        <mj-menu-item @click="routerPush('/checkbox')" index="checkbox">Checkbox 多选框</mj-menu-item>
                         <mj-menu-item @click="routerPush('/radio')" index="radio">Radio 单选框</mj-menu-item>
                         <mj-menu-item @click="routerPush('/select')" index="select">Select 下拉框</mj-menu-item>
                         <mj-menu-item @click="routerPush('/switch')" index="switch">Switch 开关</mj-menu-item>
