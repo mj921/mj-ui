@@ -225,7 +225,7 @@ export default {
   position: relative;
   .mj-select--ipt {
     padding: 0 38px 0 20px;
-    border: 1px solid $borderColor;
+    border: 1px solid $black_borderColor;
     background-color: $white;
     border-radius: 2px;
     position: relative;
@@ -267,16 +267,16 @@ export default {
       outline: none;
     }
     &.mj-select--disabled {
-      background-color: $disabledColor;
-      color: $disabledTextColor;
+      background-color: $black_disabledColor;
+      color: $black-primaryColor;
       cursor: not-allowed;
       &::after {
-        border-top-color: $disabledColor;
+        border-top-color: $black_disabledColor;
       }
       &.mj-select--open {
         &::after {
           border-top-color: transparent;
-          border-bottom-color: $disabledColor;
+          border-bottom-color: $black_disabledColor;
         }
       }
       input {
@@ -290,11 +290,11 @@ export default {
     top: 50px;
     left: 0;
     width: 100%;
-    border: 1px solid $borderColor;
+    border: 1px solid $black_borderColor;
     border-radius: 2px;
     padding: 5px 0;
     background-color: $white;
-    box-shadow: 0 0 5px 0 $borderColor;
+    box-shadow: 0 0 5px 0 $black_borderColor;
   }
 }
 </style>

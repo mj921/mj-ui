@@ -151,14 +151,14 @@ export default {
   .mj-transfer--right {
     display: inline-block;
     width: 200px;
-    border: 1px solid $borderColor;
+    border: 1px solid $black_borderColor;
     @include box-sizing(border-box);
     vertical-align: top;
     text-align: left;
     border-radius: 5px;
     .mj-transfer--title {
       padding-left: 20px;
-      border-bottom: 1px solid $borderColor;
+      border-bottom: 1px solid $black_borderColor;
       height: 40px;
       line-height: 40px;
       background-color: #f5f7fa;
@@ -176,7 +176,7 @@ export default {
           color: $blue;
         }
         &.mj-transfer--disabled {
-          color: $disabled;
+          color: $black_borderColor;
           cursor: not-allowed;
         }
       }
@@ -195,12 +195,12 @@ export default {
       line-height: 40px;
       text-align: center;
       border-radius: 50%;
-      border: 1px solid $borderColor;
+      border: 1px solid $black_borderColor;
       background-color: transparent;
       font-size: 24px;
       cursor: pointer;
       outline: none;
-      color: $textColor;
+      color: $black-primaryColor;
       &.mj-transfer--active {
         color: $white;
         background-color: $blue;

@@ -108,7 +108,7 @@ export default {
     width: 100%;
     border-collapse: collapse;
     tr {
-      border-bottom: 1px solid $borderColor;
+      border-bottom: 1px solid $black_borderColor;
       td,
       th {
         padding: 15px;
@@ -121,7 +121,7 @@ export default {
     tbody {
       tr {
         &:hover {
-          background-color: $lightGray;
+          background-color: $white_theadColor;
         }
         td {
           &.mj-table--empty {

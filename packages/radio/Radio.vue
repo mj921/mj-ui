@@ -82,7 +82,7 @@ export default {
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    border: 1px solid $borderColor;
+    border: 1px solid $black_borderColor;
   }
   .mj-radio--label {
     color: $black;

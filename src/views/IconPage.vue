@@ -37,7 +37,7 @@ export default {
   dl {
     float: left;
     width: 128px;
-    border: 1px solid $borderColor;
+    border: 1px solid $black_borderColor;
     color: gray;
     &:hover {
       color: $blue;

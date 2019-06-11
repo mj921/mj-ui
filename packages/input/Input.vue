@@ -49,7 +49,7 @@ export default {
     height: 40px;
     padding: 0 20px;
     box-sizing: border-box;
-    border: 1px solid $borderColor;
+    border: 1px solid $black_borderColor;
     border-radius: 4px;
     outline: none;
     cursor: pointer;

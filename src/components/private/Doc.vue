@@ -70,9 +70,9 @@ export default {
     color: $textColor;
   }
   .mj-doc--code {
-    border: 1px solid $borderColor;
+    border: 1px solid $black_borderColor;
     &:hover {
-      box-shadow: 0 0 10px 0 $borderColor;
+      box-shadow: 0 0 10px 0 $black_borderColor;
     }
   }
   .mj-doc--slot {
@@ -91,7 +91,7 @@ export default {
     text-align: center;
     color: $blue;
     cursor: pointer;
-    border-top: 1px solid $borderColor;
+    border-top: 1px solid $black_borderColor;
   }
 }
 </style>

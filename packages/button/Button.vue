@@ -38,7 +38,7 @@ export default {
   margin: 0 12px 20px 0;
   padding: 8px 1em;
   line-height: 1em;
-  border: 1px solid $textColor;
+  border: 1px solid $black_borderColor;
   border-radius: 5px;
   font-size: 14px;
   color: $black;
@@ -70,7 +70,7 @@ export default {
   }
   &.mj-button--disabled {
     color: lighten($black, 52);
-    border-color: lighten($textColor, 10);
+    border-color: $black_disabledColor;
     background-color: $white;
     cursor: not-allowed;
   }
@@ -93,7 +93,7 @@ export default {
       background-color: #fff;
     }
     &.mj-button--disabled {
-      color: $disabled;
+      color: $black_borderColor;
     }
   }
   &.mj-button--medium {

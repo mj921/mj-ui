@@ -63,7 +63,7 @@ export default {
     display: block;
     width: 12px;
     height: 12px;
-    border: 1px solid $borderColor;
+    border: 1px solid $black_borderColor;
     border-radius: 2px;
     background-color: $white;
   }
@@ -93,16 +93,16 @@ export default {
   }
   &.mj-checkbox--disabled {
     i {
-      background-color: $disabledColor;
-      border-color: $borderColor;
+      background-color: $black_disabledColor;
+      border-color: $black_borderColor;
       text-align: center;
-      color: $disabledTextColor;
+      color: $black-primaryColor;
       line-height: 12px;
       font-size: 12px;
       cursor: not-allowed;
     }
     .mj-checkbox--text {
-      color: $disabledTextColor;
+      color: $black-primaryColor;
       cursor: not-allowed;
     }
   }
