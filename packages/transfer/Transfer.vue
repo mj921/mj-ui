@@ -10,9 +10,13 @@
             v-if="item.type === 'left'"
             :class="{ 'mj-transfer--active': item.active }"
             :key="item.key"
-            @click="selectItem(item)"
           >
-            {{ item.label }}
+            <mj-checkbox
+              :disabled="item.disabled"
+              @change="selectItem(item, $event)"
+            >
+              {{ item.label }}
+            </mj-checkbox>
           </dl>
         </template>
       </div>
@@ -44,9 +48,13 @@
               'mj-transfer--disabled': item.disabled
             }"
             :key="item.key"
-            @click="selectItem(item)"
           >
-            {{ item.label }}
+            <mj-checkbox
+              :disabled="item.disabled"
+              @change="selectItem(item, $event)"
+            >
+              {{ item.label }}
+            </mj-checkbox>
           </dl>
         </template>
       </div>
@@ -54,6 +62,7 @@
   </div>
 </template>
 <script>
+import MjCheckbox from "../checkbox/index";
 export default {
   name: "MjTransfer",
   props: {
@@ -91,8 +100,8 @@ export default {
         };
       });
     },
-    selectItem(item) {
-      if (!item.disabled) {
+    selectItem(item, checked) {
+      if (checked) {
         item.active = !item.active;
         let addBase = item.active ? 1 : -1;
         if (item.type === "left") {
@@ -124,6 +133,9 @@ export default {
         this.rightSelectNum = 0;
       }
     }
+  },
+  components: {
+    MjCheckbox
   },
   created() {
     this.initList();

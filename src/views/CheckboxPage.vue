@@ -5,24 +5,24 @@
       <mj-checkbox v-model="checked1" label="1">1</mj-checkbox>
       <mj-checkbox v-model="checked2" label="2">2</mj-checkbox>
     </mj-code>
-    <div class="mj-page-title2">Radio 属性</div>
-    <mj-api-table :data="radioAttr"></mj-api-table>
+    <div class="mj-page-title2">Checkbox 属性</div>
+    <mj-api-table :data="checkboxAttr"></mj-api-table>
   </div>
 </template>
 <script>
-import codeJson from "@/docCodes/radio";
+import codeJson from "@/docCodes/checkbox";
 
 export default {
-  name: "RadioPage",
+  name: "ChackboxPage",
   data() {
     return {
       checked1: false,
       checked2: false,
       code1: codeJson.code1,
-      radioAttr: [
+      checkboxAttr: [
         {
-          prop: "label",
-          desc: "选项值",
+          prop: "checked",
+          desc: "是否选中",
           type: "string | number | boolean",
           optional: "—",
           defaultVal: "—"
