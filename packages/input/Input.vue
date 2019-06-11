@@ -1,17 +1,16 @@
 <template>
-    <div>
-        <input type="text" />
-    </div>
+  <div>
+    <input type="text" />
+  </div>
 </template>
-<script lang="ts">
-import Vue from 'vue'
-import { Prop, Component } from 'vue-property-decorator';
-@Component
-export default class MjInput extends Vue {
-    @Prop({type: String, default: ""})
-    value!: String;
-}
+<script>
+export default {
+  props: {
+    value: {
+      type: String,
+      default: ""
+    }
+  }
+};
 </script>
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

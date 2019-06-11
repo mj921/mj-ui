@@ -1,16 +1,14 @@
 <template>
-    <div class="mj-menu-item-group">
-        <slot></slot>
-    </div>
+  <div class="mj-menu-item-group">
+    <slot></slot>
+  </div>
 </template>
 <script>
 export default {
-    name: "MjMenuItemGroup",
-    props: {
-        title: String
-    }
-}
+  name: "MjMenuItemGroup",
+  props: {
+    title: String
+  }
+};
 </script>
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>

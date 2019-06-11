@@ -1,2 +1,2 @@
-import Row from './Row.vue';
+import Row from "./Row.vue";
 export default Row;

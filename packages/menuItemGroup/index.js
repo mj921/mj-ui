@@ -1,3 +1,2 @@
-import MenuItemGroup from '../menu/MenuItemGroup.vue';
-
+import MenuItemGroup from "../menu/MenuItemGroup.vue";
 export default MenuItemGroup;

@@ -1,2 +1,2 @@
-import Tag from './Tag.vue';
+import Tag from "./Tag.vue";
 export default Tag;

@@ -1,2 +1,2 @@
-import Option from '../select/Option.vue';
+import Option from "../select/Option.vue";
 export default Option;

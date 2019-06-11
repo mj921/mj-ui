@@ -1,26 +1,24 @@
 <template>
-    <div></div>
+  <div></div>
 </template>
 <script>
 export default {
-    name: "MjTableColumn",
-    props: {
-        prop: String,
-        label: String,
-        width: String,
-        minWidth: String,
-        align: {
-            type: String,
-            default: "left"
-        },
-        formatter: Function
+  name: "MjTableColumn",
+  props: {
+    prop: String,
+    label: String,
+    width: String,
+    minWidth: String,
+    align: {
+      type: String,
+      default: "left"
     },
-    inject: ["addColumn"],
-    created() {
-        this.addColumn && this.addColumn(this);
-    }
-}
+    formatter: Function
+  },
+  inject: ["addColumn"],
+  created() {
+    this.addColumn && this.addColumn(this);
+  }
+};
 </script>
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
