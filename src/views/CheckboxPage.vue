@@ -7,6 +7,8 @@
     </mj-code>
     <div class="mj-page-title2">Checkbox 属性</div>
     <mj-api-table :data="checkboxAttr"></mj-api-table>
+    <div class="mj-page-title2">Checkbox 事件</div>
+    <mj-api-table :data="checkboxEvent"></mj-api-table>
   </div>
 </template>
 <script>
@@ -33,6 +35,13 @@ export default {
           type: "boolean",
           optional: "—",
           defaultVal: "false"
+        }
+      ],
+      checkboxEnvent: [
+        {
+          event: "change",
+          desc: "选中状态发生改变时触发",
+          callback: "当前是否选中"
         }
       ]
     };
