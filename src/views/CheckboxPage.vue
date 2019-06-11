@@ -26,6 +26,13 @@ export default {
           type: "string | number | boolean",
           optional: "—",
           defaultVal: "—"
+        },
+        {
+          prop: "disabled",
+          desc: "是否禁用",
+          type: "boolean",
+          optional: "—",
+          defaultVal: "false"
         }
       ]
     };
