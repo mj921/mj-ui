@@ -24,6 +24,11 @@ export default new Router({
           component: () => import("./views/CheckboxPage.vue")
         },
         {
+          path: "/datepicker",
+          name: "datepicker",
+          component: () => import("./views/DatePickerPage.vue")
+        },
+        {
           path: "/layout",
           name: "layout",
           component: () => import("./views/LayoutPage.vue")
@@ -32,6 +37,11 @@ export default new Router({
           path: "/icon",
           name: "icon",
           component: () => import("./views/IconPage.vue")
+        },
+        {
+          path: "/input",
+          name: "input",
+          component: () => import("./views/InputPage.vue")
         },
         {
           path: "/radio",
