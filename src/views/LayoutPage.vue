@@ -54,9 +54,9 @@
       </mj-row>
     </mj-code>
     <div class="mj-page-title2">Row 属性</div>
-    <mj-api-table :data="rowAttr"></mj-api-table>
+    <mj-api-table :data="rowAttr" />
     <div class="mj-page-title2">Col 属性</div>
-    <mj-api-table :data="colAttr"></mj-api-table>
+    <mj-api-table :data="colAttr" />
   </div>
 </template>
 <script>

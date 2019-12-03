@@ -6,9 +6,9 @@
       <mj-checkbox v-model="checked2" label="2">2</mj-checkbox>
     </mj-code>
     <div class="mj-page-title2">Checkbox 属性</div>
-    <mj-api-table :data="checkboxAttr"></mj-api-table>
+    <mj-api-table :data="checkboxAttr" />
     <div class="mj-page-title2">Checkbox 事件</div>
-    <mj-api-table :data="checkboxEvent"></mj-api-table>
+    <mj-api-table :data="checkboxEvent" />
   </div>
 </template>
 <script>
@@ -37,7 +37,7 @@ export default {
           defaultVal: "false"
         }
       ],
-      checkboxEnvent: [
+      checkboxEvent: [
         {
           event: "change",
           desc: "选中状态发生改变时触发",

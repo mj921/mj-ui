@@ -24,9 +24,9 @@
       <mj-tag size="mini">迷你标签</mj-tag>
     </mj-code>
     <div class="mj-page-title2">Tag 属性</div>
-    <mj-api-table :data="tagAttr"></mj-api-table>
+    <mj-api-table :data="tagAttr" />
     <div class="mj-page-title2">Tag 事件</div>
-    <mj-api-table :data="tagEvent" type="event"></mj-api-table>
+    <mj-api-table :data="tagEvent" type="event" />
   </div>
 </template>
 <script>

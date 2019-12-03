@@ -22,7 +22,7 @@
       ></mj-switch>
     </mj-code>
     <div class="mj-page-title2">Switch 属性</div>
-    <mj-api-table :data="switchAttr"></mj-api-table>
+    <mj-api-table :data="switchAttr" />
   </div>
 </template>
 <script>

@@ -5,7 +5,7 @@
       <mj-date-picker v-model="date1" />
     </mj-code>
     <div class="mj-page-title2">Datepicker 属性</div>
-    <mj-api-table :data="datepickerAttr"></mj-api-table>
+    <mj-api-table :data="datepickerAttr" />
   </div>
 </template>
 <script>

@@ -53,11 +53,11 @@
       </mj-select>
     </mj-code>
     <div class="mj-page-title2">Select 属性</div>
-    <mj-api-table :data="selectAttr"></mj-api-table>
+    <mj-api-table :data="selectAttr" />
     <div class="mj-page-title2">Select 事件</div>
-    <mj-api-table :data="selectEvent" type="event"></mj-api-table>
+    <mj-api-table :data="selectEvent" type="event" />
     <div class="mj-page-title2">Option 属性</div>
-    <mj-api-table :data="optionAttr"></mj-api-table>
+    <mj-api-table :data="optionAttr" />
   </div>
 </template>
 <script>

@@ -1,2 +1,2 @@
-import Transfer from './Transfer.vue';
+import Transfer from "./Transfer.vue";
 export default Transfer;

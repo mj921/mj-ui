@@ -94,9 +94,9 @@
       </mj-table>
     </mj-code>
     <div class="mj-page-title2">Table 属性</div>
-    <mj-api-table :data="tableAttr"></mj-api-table>
+    <mj-api-table :data="tableAttr" />
     <div class="mj-page-title2">TableColumn 属性</div>
-    <mj-api-table :data="tableColumnAttr"></mj-api-table>
+    <mj-api-table :data="tableColumnAttr" />
   </div>
 </template>
 <script>

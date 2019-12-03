@@ -6,9 +6,9 @@
       输入框值：{{ input1 }}
     </mj-code>
     <div class="mj-page-title2">Input 属性</div>
-    <mj-api-table :data="inputAttr"></mj-api-table>
+    <mj-api-table :data="inputAttr" />
     <div class="mj-page-title2">Input 事件</div>
-    <mj-api-table :data="inputEvent" type="event"></mj-api-table>
+    <mj-api-table :data="inputEvent" type="event" />
   </div>
 </template>
 <script>

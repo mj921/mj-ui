@@ -5,7 +5,7 @@
       <mj-transfer :data="data1" v-model="value1"></mj-transfer>
     </mj-code>
     <div class="mj-page-title2">Transfer 属性</div>
-    <mj-api-table :data="transferAttr"></mj-api-table>
+    <mj-api-table :data="transferAttr" />
   </div>
 </template>
 <script>

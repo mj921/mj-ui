@@ -22,7 +22,7 @@
       <mj-button type="primary" size="mini">迷你按钮</mj-button>
     </mj-code>
     <div class="mj-page-title2">Button 属性</div>
-    <mj-api-table :data="buttonAttr"></mj-api-table>
+    <mj-api-table :data="buttonAttr" />
   </div>
 </template>
 
