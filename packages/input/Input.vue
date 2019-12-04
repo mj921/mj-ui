@@ -1,5 +1,5 @@
 <template>
-  <div class="mj-input">
+  <div class="mj-input" @click="clickHandle">
     <input
       ref="input"
       :type="type"
@@ -38,6 +38,9 @@ export default {
     },
     focusHandle(e) {
       this.$emit("focus", e);
+    },
+    clickHandle(e) {
+      this.$emit("click", e);
     }
   }
 };

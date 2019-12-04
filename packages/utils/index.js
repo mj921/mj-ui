@@ -1,4 +1,3 @@
-
 /**
  * 数字逗号分隔
  * @param { number } num
@@ -61,8 +60,9 @@ export function numberSplit(
   }
 }
 
-export function addZero(n) {
-  return n < 10 ? "0" + n : n + "";
+export function addZero(n, digit = 2) {
+  const str = "0000000000000000000000000000" + n;
+  return str.substr(str.length - digit, digit);
 }
 export function dateFmt(date = new Date(), fmt = "yyyy-MM-dd") {
   if (!(date instanceof Date)) {
