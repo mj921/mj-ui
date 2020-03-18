@@ -1,6 +1,6 @@
 <template>
   <div class="mj-date-picker">
-    <mj-input :value="value" @click="panelVisible = !panelVisible" />
+    <mj-input :value="value" @click="togglePanelShow" />
     <div class="mj-date-picker--panel" v-show="panelVisible">
       <div class="mj-date-picker--header">
         <button class="mj-icon-more-left" @click="prevMore"></button>
@@ -125,6 +125,9 @@ export default {
     };
   },
   methods: {
+    togglePanelShow() {
+      this.panelVisible = !this.panelVisible;
+    },
     createDayList(dateStr) {
       const nowDate = dateStr ? new Date(dateStr) : new Date();
       const dayList = [];
