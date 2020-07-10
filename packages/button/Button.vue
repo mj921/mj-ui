@@ -20,8 +20,17 @@
 export default {
   name: "MjButton",
   props: {
-    type: { type: String, default: "" },
-    size: { type: String, default: "" },
+    type: {
+      type: String,
+      default: "",
+      validator(val) {
+        return ["primary", "danger", "warning", "text"].indexOf(val) > -1;
+      }
+    },
+    size: {
+      type: String,
+      default: ""
+    },
     disabled: { type: Boolean, default: false }
   },
   methods: {
