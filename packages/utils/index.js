@@ -101,3 +101,15 @@ export function dateFmt(date = new Date(), fmt = "yyyy-MM-dd") {
   }
   return fmt;
 }
+export const throttle = function(fn, context, timer = 100) {
+  let flag = true;
+  return function(...arg) {
+    if (flag) {
+      fn.apply(context, arg);
+      flag = false;
+    }
+    setTimeout(() => {
+      flag = true;
+    }, timer);
+  };
+};

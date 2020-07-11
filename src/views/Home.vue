@@ -102,6 +102,7 @@ export default {
       left: 0;
       top: 0;
       width: 256px;
+      height: 100%;
       overflow-x: hidden;
       overflow-y: auto;
     }
