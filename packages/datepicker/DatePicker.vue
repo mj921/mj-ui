@@ -1,6 +1,6 @@
 <template>
   <div class="mj-date-picker">
-    <mj-input :value="value" @click="togglePanelShow" />
+    <mj-input :value="displayValue" @click="togglePanelShow" />
     <div class="mj-date-picker--panel" v-show="panelVisible">
       <div class="mj-date-picker--header">
         <button class="mj-icon-more-left" @click="prevMore"></button>
@@ -91,8 +91,16 @@ export default {
   name: "MjDatePicker",
   props: {
     value: {
-      type: String,
+      type: [String, Number, Date],
       required: true
+    },
+    valueFormat: {
+      type: String,
+      default: ""
+    },
+    format: {
+      type: String,
+      default: "yyyy-MM-dd"
     }
   },
   data() {
@@ -121,7 +129,8 @@ export default {
       currYear: 1992,
       currDay: 21,
       currMonth: 9,
-      optionType: "day"
+      optionType: "day",
+      displayValue: ""
     };
   },
   methods: {
@@ -220,14 +229,18 @@ export default {
       this.currMonth = this.month;
       this.currDay = this.day;
       this.panelVisible = false;
+      this.setValue();
+      this.createDayList(`${this.year}-${this.month}-${this.day}`);
+    },
+    setValue() {
+      const dateObj = new Date(
+        `${this.currYear}-${this.currMonth}-${this.currDay}`
+      );
+      this.displayValue = dateFmt(dateObj, this.format);
       this.$emit(
         "input",
-        dateFmt(
-          new Date(`${this.currYear}-${this.currMonth}-${this.currDay}`),
-          "yyyy-MM-dd"
-        )
+        this.valueFormat ? dateFmt(dateObj, this.valueFormat) : dateObj
       );
-      this.createDayList(`${this.year}-${this.month}-${this.day}`);
     },
     prev() {
       if (this.month === 1) {
@@ -275,7 +288,11 @@ export default {
     }
   },
   created() {
-    const valueDate = this.value ? new Date(this.value) : new Date();
+    const valueDate = this.value
+      ? this.value instanceof Date
+        ? this.value
+        : new Date(this.value)
+      : new Date();
     this.currYear = valueDate.getFullYear();
     this.currMonth = valueDate.getMonth() + 1;
     this.currDay = valueDate.getDate();
