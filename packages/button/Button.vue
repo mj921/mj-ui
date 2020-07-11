@@ -1,16 +1,13 @@
 <template>
   <button
     class="mj-button"
-    :class="{
-      'mj-button--primary': type === 'primary',
-      'mj-button--danger': type === 'danger',
-      'mj-button--warning': type === 'warning',
-      'mj-button--text': type === 'text',
-      'mj-button--disabled': disabled,
-      'mj-button--medium': size === 'medium',
-      'mj-button--small': size === 'small',
-      'mj-button--mini': size === 'mini'
-    }"
+    :class="[
+      'mj-button--' + type,
+      'mj-button--' + size,
+      {
+        isdisabled: disabled
+      }
+    ]"
     @click="_handleClick"
   >
     <slot></slot>
@@ -22,14 +19,19 @@ export default {
   props: {
     type: {
       type: String,
-      default: "",
+      default: "default",
       validator(val) {
-        return ["primary", "danger", "warning", "text"].indexOf(val) > -1;
+        return (
+          ["primary", "danger", "warning", "text", "default"].indexOf(val) > -1
+        );
       }
     },
     size: {
       type: String,
-      default: ""
+      default: "",
+      validator(val) {
+        return ["medium", "small", "mini", ""].indexOf(val) > -1;
+      }
     },
     disabled: { type: Boolean, default: false }
   },
@@ -67,7 +69,7 @@ export default {
       background-color: lighten($color, 10);
       border-color: lighten($color, 10);
     }
-    &.mj-button--disabled {
+    &.isdisabled {
       background-color: lighten($color, 29);
       border-color: lighten($color, 29);
       cursor: not-allowed;
@@ -77,7 +79,7 @@ export default {
     font-size: $font-size;
     padding: $padTop $padLeft;
   }
-  &.mj-button--disabled {
+  &.isdisabled {
     color: lighten($black, 52);
     border-color: $black_disabledColor;
     background-color: $white;
@@ -101,7 +103,7 @@ export default {
     &:hover {
       background-color: #fff;
     }
-    &.mj-button--disabled {
+    &.isdisabled {
       color: $black_borderColor;
     }
   }

@@ -41,8 +41,8 @@ export default {
           prop: "type",
           desc: "按钮类型",
           type: "string",
-          optional: "primary | danger | warning | text",
-          defaultVal: "—"
+          optional: "primary | danger | warning | text | default",
+          defaultVal: "default"
         },
         {
           prop: "size",
