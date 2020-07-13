@@ -296,7 +296,7 @@ $yearSize: $optionsWidth / 4;
   border: 1px solid $black_borderColor;
   background-color: $white;
   font-size: 14px;
-  &.mj-date-picker__panel--bottom {
+  &.mj-date-picker__panel--top {
     transform: translateY(-100%);
     margin-top: -50px;
   }

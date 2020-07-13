@@ -1,12 +1,14 @@
 <template>
   <div class="mj-select">
     <div
+      ref="reference"
       class="mj-select--ipt"
       :class="{
         'mj-select--open': openFlag,
         'mj-select--disabled': disabled
       }"
       @click="handleClick"
+      @blur="handleBlur"
     >
       <div ref="tags" class="mj-select--tags" v-if="multiple" @click.stop>
         <mj-tag
@@ -40,19 +42,18 @@
         <i v-show="openFlag && !closeHover" class="mj-icon-drop-up"></i>
       </div>
     </div>
-    <transition>
-      <div
-        v-show="openFlag"
-        class="mj-select--options"
-        :style="{ top: iptHeight + 12 + 'px' }"
-      >
-        <slot></slot>
-      </div>
-    </transition>
+    <select-option-panel
+      only-one
+      :show-popper.sync="openFlag"
+      :reference="$refs.reference"
+    >
+      <slot></slot>
+    </select-option-panel>
   </div>
 </template>
 <script>
 import MjTag from "../tag/index";
+import SelectOptionPanel from "./SelectOptionPanel";
 
 export default {
   name: "MjSelect",
@@ -144,6 +145,9 @@ export default {
     };
   },
   methods: {
+    handleBlur() {
+      this.openFlag = false;
+    },
     handleClick(e) {
       e.stopPropagation();
       if (!this.disabled) {
@@ -215,7 +219,8 @@ export default {
     document.removeEventListener("click", this._domClick);
   },
   components: {
-    "mj-tag": MjTag
+    "mj-tag": MjTag,
+    SelectOptionPanel
   }
 };
 </script>

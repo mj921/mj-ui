@@ -1,6 +1,7 @@
 import PopperManage from "./PoperManage";
 import { getScrollContainer } from "../dom";
 
+let popperId = 1;
 export default {
   props: {
     showPopper: {
@@ -15,16 +16,21 @@ export default {
       type: Boolean,
       default: false
     },
-    reference: Object,
+    reference: [Object, Element],
     popperOffset: {
       type: Number,
       default: 5
+    },
+    onlyOne: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
     return {
-      popperPosition: "top",
-      scrollContainer: null
+      popperPosition: "bottom",
+      scrollContainer: null,
+      _popperId: 1
     };
   },
   watch: {
@@ -34,6 +40,9 @@ export default {
   },
   methods: {
     updatePopper() {
+      if (this.onlyOne) {
+        PopperManage.setOnePopper(this._popperId, this);
+      }
       if (!this.$el) {
         this.$nextTick(() => {
           this.updatePopper();
@@ -42,7 +51,7 @@ export default {
       }
       this.scrollContainer.addEventListener("scroll", this.scrollHandle);
       this.updatePopperPosition();
-      PopperManage.setZIndex(this.$el);
+      this.$el.style.zIndex = PopperManage.getZIndex();
     },
     updatePopperPosition() {
       const reference =
@@ -61,8 +70,8 @@ export default {
           elBcr.height + this.popperOffset >
             window.innerHeight - refBcr.bottom &&
           refBcr.top > window.innerHeight - refBcr.bottom
-            ? "bottom"
-            : "top";
+            ? "top"
+            : "bottom";
       });
     },
     destroyPopper() {
@@ -70,9 +79,15 @@ export default {
     },
     scrollHandle() {
       this.updatePopperPosition();
+    },
+    closePopper() {
+      this.$emit("update:showPopper", false);
     }
   },
   mounted() {
     this.scrollContainer = getScrollContainer(this.$el, true);
+  },
+  created() {
+    this._popperId = popperId++;
   }
 };
