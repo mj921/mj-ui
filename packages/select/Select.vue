@@ -44,8 +44,10 @@
     </div>
     <select-option-panel
       only-one
+      append-to-body
       :show-popper.sync="openFlag"
       :reference="$refs.reference"
+      :option-num="optionNum"
     >
       <slot></slot>
     </select-option-panel>
@@ -95,6 +97,13 @@ export default {
       iptHeight: 38,
       closeHover: false
     };
+  },
+  computed: {
+    optionNum() {
+      return this.options && typeof this.options === "object"
+        ? Object.keys(this.options).length
+        : 0;
+    }
   },
   provide() {
     return {

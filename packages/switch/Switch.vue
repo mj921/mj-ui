@@ -121,7 +121,7 @@ export default {
     float: left;
     width: 40px;
     height: 20px;
-    box-sizing: border-box;
+    @include box-sizing(border-box);
     border-radius: 20px;
     background-color: $red;
     border: 2px solid $red;

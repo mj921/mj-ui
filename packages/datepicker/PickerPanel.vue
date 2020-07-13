@@ -344,7 +344,7 @@ $yearSize: $optionsWidth / 4;
         padding: 5px;
         text-align: center;
         line-height: $daySize - 10px;
-        box-sizing: border-box;
+        @include box-sizing(border-box);
       }
     }
     .mj-date-picker--content-select-options {
@@ -358,7 +358,7 @@ $yearSize: $optionsWidth / 4;
           padding: 5px;
           text-align: center;
           line-height: $daySize - 10px;
-          box-sizing: border-box;
+          @include box-sizing(border-box);
           cursor: pointer;
           &.curr,
           &:hover {
@@ -381,7 +381,7 @@ $yearSize: $optionsWidth / 4;
           margin: 10px 0;
           text-align: center;
           line-height: $monthSize - 10px;
-          box-sizing: border-box;
+          @include box-sizing(border-box);
           cursor: pointer;
           &.curr,
           &:hover {
