@@ -1,10 +1,10 @@
 <template>
-  <div class="mj-date-picker">
+  <div class="mj-date-picker" ref="datePickerRoot" v-clickoutsit="handlerClose">
     <mj-input ref="reference" :value="displayValue" @click="togglePanelShow" />
     <picker-panel
       append-to-body
       :reference="$refs.reference"
-      :show-popper="panelVisible"
+      :show-popper.sync="panelVisible"
       :curr-year="currYear"
       :curr-month="currMonth"
       :curr-day="currDay"
@@ -16,11 +16,15 @@
 
 <script>
 import PickerPanel from "./PickerPanel";
+import clickoutsit from "../utils/directives/clickoutsit";
 import { dateFmt } from "../utils";
 export default {
   name: "MjDatePicker",
   components: {
     PickerPanel
+  },
+  directives: {
+    clickoutsit
   },
   props: {
     value: {
@@ -40,35 +44,17 @@ export default {
     return {
       valueDate: null,
       panelVisible: false,
-      dayList: [],
-      yearList: [],
-      dateVolume: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
-      monthList: [
-        "一月",
-        "二月",
-        "三月",
-        "四月",
-        "五月",
-        "六月",
-        "七月",
-        "八月",
-        "九月",
-        "十月",
-        "十一月",
-        "十二月"
-      ],
-      year: 1992,
-      month: 9,
-      day: 21,
       currYear: 1992,
       currDay: 21,
       currMonth: 9,
-      optionType: "day",
       displayValue: ""
     };
   },
   methods: {
     togglePanelShow() {
+      if (this.panelVisible) {
+        this.$refs.datePickerRoot.focus();
+      }
       this.panelVisible = !this.panelVisible;
     },
     selectFinish(dateObj) {
@@ -87,6 +73,9 @@ export default {
         "input",
         this.valueFormat ? dateFmt(dateObj, this.valueFormat) : dateObj
       );
+    },
+    handlerClose() {
+      this.panelVisible = false;
     }
   },
   created() {

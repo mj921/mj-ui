@@ -47,6 +47,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .mj-input {
+  display: inline-block;
   input {
     width: 180px;
     height: 40px;

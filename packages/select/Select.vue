@@ -1,6 +1,7 @@
 <template>
   <div class="mj-select">
     <div
+      v-clickoutsit="handlerClose"
       ref="reference"
       class="mj-select--ipt"
       :class="{
@@ -8,7 +9,6 @@
         'mj-select--disabled': disabled
       }"
       @click="handleClick"
-      @blur="handleBlur"
     >
       <div ref="tags" class="mj-select--tags" v-if="multiple" @click.stop>
         <mj-tag
@@ -54,9 +54,13 @@
 <script>
 import MjTag from "../tag/index";
 import SelectOptionPanel from "./SelectOptionPanel";
+import clickoutsit from "../utils/directives/clickoutsit";
 
 export default {
   name: "MjSelect",
+  directives: {
+    clickoutsit
+  },
   props: {
     value: {
       validator: function(value) {
@@ -145,7 +149,7 @@ export default {
     };
   },
   methods: {
-    handleBlur() {
+    handlerClose() {
       this.openFlag = false;
     },
     handleClick(e) {
