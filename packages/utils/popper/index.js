@@ -21,10 +21,6 @@ export default {
       type: Number,
       default: 5
     },
-    onlyOne: {
-      type: Boolean,
-      default: false
-    },
     mask: {
       type: Boolean,
       default: true
@@ -39,7 +35,8 @@ export default {
       popperPosition: "bottom",
       scrollContainer: null,
       _popperId: 1,
-      _popperMask: null
+      _popperMask: null,
+      _isRenderPopper: false
     };
   },
   watch: {
@@ -49,15 +46,13 @@ export default {
   },
   methods: {
     updatePopper() {
-      if (this.onlyOne) {
-        PopperManage.setOnePopper(this._popperId, this);
-      }
       if (!this.$el) {
         this.$nextTick(() => {
           this.updatePopper();
         });
         return;
       }
+      this._isRenderPopper = true;
       this.scrollContainer.addEventListener("scroll", this.scrollHandle);
       if (this.reference) {
         this.updatePopperPosition();
@@ -112,8 +107,15 @@ export default {
     this._popperId = popperId++;
   },
   beforeDestroy() {
-    if (this._popperMask) {
+    if (
+      this._popperMask &&
+      this._mj_parentEl &&
+      this._popperMask._mj_parentEl.removeChild
+    ) {
       this._popperMask._mj_parentEl.removeChild(this._popperMask);
+    }
+    if (this.appendToBody && this._isRenderPopper) {
+      document.body.removeChild(this.$el);
     }
   }
 };

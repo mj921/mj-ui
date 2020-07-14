@@ -8,15 +8,6 @@ const PopperManage = {
   getBoundingClientRect(el) {
     return el.getBoundingClientRect();
   },
-  setOnePopper(popperId, popper) {
-    if (this.onePopper === popperId) return;
-    this.instances[popperId] = popper;
-    if (this.onePopper && this.instances[this.onePopper]) {
-      this.instances[this.onePopper].closePopper();
-      this.instances[this.onePopper] = null;
-    }
-    this.onePopper = popperId;
-  },
   openMask(appendToBody = true, parentEl, mask) {
     if (!mask) {
       mask = document.createElement("div");
