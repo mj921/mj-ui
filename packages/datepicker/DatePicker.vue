@@ -69,10 +69,12 @@ export default {
         `${this.currYear}-${this.currMonth}-${this.currDay}`
       );
       this.displayValue = dateFmt(dateObj, this.format);
+      const oldVal = this.value;
       this.$emit(
         "input",
         this.valueFormat ? dateFmt(dateObj, this.valueFormat) : dateObj
       );
+      this.$emit("change", this.value, oldVal);
     },
     handlerClose() {
       this.panelVisible = false;
