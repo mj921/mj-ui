@@ -55,6 +55,9 @@ export default {
   background-color: $white;
   outline: none;
   cursor: pointer;
+  & + .mj-button {
+    margin-left: 10px;
+  }
   &:hover {
     color: $blue;
     border-color: lighten($blue, 10);
