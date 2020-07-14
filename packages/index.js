@@ -17,12 +17,14 @@ import Table from "./table/index";
 import TableColumn from "./tableColumn/index";
 import Tag from "./tag/index";
 import Transfer from "./transfer/index";
+import Dialog from "./dialog";
 
 const components = {
   Button,
   Checkbox,
   Col,
   DatePicker,
+  Dialog,
   Input,
   Menu,
   MenuItem,

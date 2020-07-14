@@ -2,7 +2,7 @@
   <div
     class="mj-date-picker__panel"
     :class="['mj-date-picker__panel--' + popperPosition]"
-    v-show="showPopper"
+    v-show="visible"
   >
     <div class="mj-date-picker--header">
       <button class="mj-icon-more-left" @click.stop="prevMore"></button>
@@ -56,8 +56,22 @@ import Popper from "../utils/popper";
 import DateList from "./basic/DateList";
 import MonthList from "./basic/MonthList";
 import YearList from "./basic/YearList";
+const NewPopper = {
+  ...Popper,
+  props: {
+    ...Popper.props,
+    mask: {
+      type: Boolean,
+      default: false
+    },
+    appendToBody: {
+      type: Boolean,
+      default: true
+    }
+  }
+};
 export default {
-  mixins: [Popper],
+  mixins: [NewPopper],
   components: {
     DateList,
     MonthList,

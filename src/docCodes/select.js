@@ -15,8 +15,8 @@ export default {
       export default {
         data () {
           return {
-            select1 = "",
-            options1 = [{
+            select1: "",
+            options1: [{
               value: 1,
               label: "香蕉"
             }, {
@@ -50,8 +50,8 @@ export default {
       export default {
         data () {
           return {
-            select2 = "",
-            options2 = [{
+            select2: "",
+            options2: [{
               value: 1,
               label: "香蕉"
             }, {
@@ -86,8 +86,8 @@ export default {
       export default {
         data () {
           return {
-            select3 = "",
-            options3 = [{
+            select3: "",
+            options3: [{
               value: 1,
               label: "香蕉"
             }, {
@@ -122,8 +122,8 @@ export default {
       export default {
         data () {
           return {
-            select4 = "",
-            options4 = [{
+            select4: "",
+            options4: [{
               value: 1,
               label: "香蕉"
             }, {
@@ -157,8 +157,8 @@ export default {
       export default {
         data () {
           return {
-            select5 = "",
-            options5 = [{
+            select5: "",
+            options5: [{
               value: 1,
               label: "香蕉"
             }, {

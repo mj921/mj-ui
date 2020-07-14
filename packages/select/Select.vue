@@ -43,9 +43,7 @@
       </div>
     </div>
     <select-option-panel
-      only-one
-      append-to-body
-      :show-popper.sync="openFlag"
+      :visible.sync="openFlag"
       :reference="$refs.reference"
       :option-num="
         options && typeof options === 'object' ? Object.keys(options).length : 0

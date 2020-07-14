@@ -9,7 +9,7 @@ export default {
       export default {
         data () {
           return {
-            data1 = [{
+            data1: [{
               key: "key1",
               label: "key1"
             }, {
@@ -23,7 +23,7 @@ export default {
               key: "key4",
               label: "key4"
             }];
-            value1 = [1];
+            value1: [1];
           }
         }
       }

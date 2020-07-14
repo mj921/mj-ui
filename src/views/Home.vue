@@ -28,6 +28,9 @@
             <mj-menu-item @click="routerPush('/datepicker')" index="datepicker">
               Datepicker 日期选择器
             </mj-menu-item>
+            <mj-menu-item @click="routerPush('/dialog')" index="dialog">
+              Dialog 对话框
+            </mj-menu-item>
             <mj-menu-item @click="routerPush('/input')" index="input">
               Input 输入框
             </mj-menu-item>

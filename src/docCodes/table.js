@@ -13,7 +13,7 @@ export default {
       export default {
         data () {
           return {
-            data1 = [
+            data1: [
               {
                 prop: "type",
                 desc: "按钮类型",
@@ -51,7 +51,7 @@ export default {
       export default {
         data () {
           return {
-            data2 = [
+            data2: [
               {
                 width: 100,
                 height: 200
@@ -96,7 +96,7 @@ export default {
       export default {
         data () {
           return {
-            data4 = [
+            data4: [
               {
                 width: 100,
                 height: 200

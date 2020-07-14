@@ -46,7 +46,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 .mj-button {
-  margin: 0 12px 20px 0;
   padding: 8px 1em;
   line-height: 1em;
   border: 1px solid $black_borderColor;

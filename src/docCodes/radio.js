@@ -10,7 +10,7 @@ export default {
       export default {
         data () {
           return {
-            radio1 = ""
+            radio1: ""
           }
         }
       }

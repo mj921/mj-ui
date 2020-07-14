@@ -32,3 +32,13 @@ $green: #52c41a;
 $lightGray: #f7f5f5;
 
 $datapicker_optionsWidth: 280px;
+
+.mj-popper__mask {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: #000;
+  opacity: 0.5
+}

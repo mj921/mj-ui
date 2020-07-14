@@ -4,7 +4,7 @@ import { getScrollContainer } from "../dom";
 let popperId = 1;
 export default {
   props: {
-    showPopper: {
+    visible: {
       type: Boolean,
       default: false
     },
@@ -24,17 +24,26 @@ export default {
     onlyOne: {
       type: Boolean,
       default: false
+    },
+    mask: {
+      type: Boolean,
+      default: true
+    },
+    maskAppendToBody: {
+      type: Boolean,
+      default: true
     }
   },
   data() {
     return {
       popperPosition: "bottom",
       scrollContainer: null,
-      _popperId: 1
+      _popperId: 1,
+      _popperMask: null
     };
   },
   watch: {
-    showPopper(val) {
+    visible(val) {
       val ? this.updatePopper() : this.destroyPopper();
     }
   },
@@ -50,13 +59,22 @@ export default {
         return;
       }
       this.scrollContainer.addEventListener("scroll", this.scrollHandle);
-      this.updatePopperPosition();
+      if (this.reference) {
+        this.updatePopperPosition();
+      } else if (this.appendToBody) {
+        document.body.appendChild(this.$el);
+      }
+      if (this.mask) {
+        this._popperMask = PopperManage.openMask(
+          this.maskAppendToBody,
+          this.$el.parentNode,
+          this._popperMask
+        );
+      }
       this.$el.style.zIndex = PopperManage.getZIndex();
     },
     updatePopperPosition() {
-      const reference =
-        (this.reference && this.reference.$el) ||
-        (this.$parent && this.$parent.$el);
+      const reference = this.reference && this.reference.$el;
       const refBcr = reference.getBoundingClientRect();
       if (this.appendToBody) {
         const top = refBcr.bottom + document.body.scrollTop;
@@ -76,12 +94,15 @@ export default {
     },
     destroyPopper() {
       this.scrollContainer.removeEventListener("scroll", this.scrollHandle);
+      if (this.mask) {
+        PopperManage.closeMask(this._popperMask);
+      }
     },
     scrollHandle() {
       this.updatePopperPosition();
     },
     closePopper() {
-      this.$emit("update:showPopper", false);
+      this.$emit("update:visible", false);
     }
   },
   mounted() {
@@ -89,5 +110,10 @@ export default {
   },
   created() {
     this._popperId = popperId++;
+  },
+  beforeDestroy() {
+    if (this._popperMask) {
+      this._popperMask._mj_parentEl.removeChild(this._popperMask);
+    }
   }
 };

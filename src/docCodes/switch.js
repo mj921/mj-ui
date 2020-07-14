@@ -9,7 +9,7 @@ export default {
       export default {
         data () {
           return {
-            switch1 = true;
+            switch1: true;
           }
         }
       }
@@ -25,7 +25,7 @@ export default {
       export default {
         data () {
           return {
-            switch2 = "打开";
+            switch2: "打开";
           }
         }
       }
@@ -41,7 +41,7 @@ export default {
       export default {
         data () {
           return {
-            switch3 = true;
+            switch3: true;
           }
         }
       }
@@ -57,7 +57,7 @@ export default {
       export default {
         data () {
           return {
-            switch4 = true;
+            switch4: true;
           }
         }
       }

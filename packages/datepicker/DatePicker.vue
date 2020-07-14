@@ -2,9 +2,9 @@
   <div class="mj-date-picker" ref="datePickerRoot" v-clickoutsit="handlerClose">
     <mj-input ref="reference" :value="displayValue" @click="togglePanelShow" />
     <picker-panel
-      append-to-body
       :reference="$refs.reference"
-      :show-popper.sync="panelVisible"
+      :visible.sync="panelVisible"
+      :mask="false"
       :curr-year="currYear"
       :curr-month="currMonth"
       :curr-day="currDay"

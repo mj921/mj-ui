@@ -1,7 +1,7 @@
 <template>
   <transition name="fade">
     <div
-      v-show="showPopper"
+      v-show="visible"
       class="mj-select__option-panel"
       :class="'mj-select__option-panel--' + popperPosition"
       :style="{
@@ -20,8 +20,22 @@
 <script>
 import Popper from "../utils/popper";
 import MjScrollView from "../scrollView";
+const NewPopper = {
+  ...Popper,
+  props: {
+    ...Popper.props,
+    mask: {
+      type: Boolean,
+      default: false
+    },
+    appendToBody: {
+      type: Boolean,
+      default: true
+    }
+  }
+};
 export default {
-  mixins: [Popper],
+  mixins: [NewPopper],
   components: {
     MjScrollView
   },

@@ -29,6 +29,11 @@ export default new Router({
           component: () => import("./views/DatePickerPage.vue")
         },
         {
+          path: "/dialog",
+          name: "dialog",
+          component: () => import("./views/DialogPage.vue")
+        },
+        {
           path: "/layout",
           name: "layout",
           component: () => import("./views/LayoutPage.vue")
