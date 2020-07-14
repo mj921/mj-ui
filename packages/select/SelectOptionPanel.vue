@@ -30,15 +30,6 @@ export default {
       type: Number,
       default: 0
     }
-  },
-  watch: {
-    showPopper(val) {
-      if (val) {
-        this.$nextTick(() => {
-          this.$refs.scroll && this.$refs.scroll.updateThumb();
-        });
-      }
-    }
   }
 };
 </script>

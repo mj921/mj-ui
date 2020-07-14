@@ -33,7 +33,11 @@
 </template>
 
 <script>
-import { getScrollBarWidth } from "../utils/dom";
+import {
+  getScrollBarWidth,
+  addResizeListener,
+  removeResizeListener
+} from "../utils/dom";
 export default {
   name: "mj-scroll-view",
   props: {
@@ -58,6 +62,24 @@ export default {
       thumbScrollTop: 0,
       moveY: 0
     };
+  },
+  computed: {
+    wrapHeight() {
+      return (
+        (this.$refs &&
+          this.$refs.scrollWrap &&
+          this.$refs.scrollWrap.clientHeight) ||
+        0
+      );
+    },
+    wrapScrollHeight() {
+      return (
+        (this.$refs &&
+          this.$refs.scrollWrap &&
+          this.$refs.scrollWrap.scrollHeight) ||
+        0
+      );
+    }
   },
   methods: {
     updateThumb() {
@@ -108,9 +130,9 @@ export default {
     this.$nextTick(() => {
       this.updateThumb();
     });
-    this.$refs.scrollView.addEventListener("resize", this.updateThumb);
+    addResizeListener(this.$refs.scrollView, this.updateThumb);
     this.$emit("hook:beforeDestroy", function() {
-      this.$refs.scrollView.removeEventListener("resize", this.updateThumb);
+      removeResizeListener(this.$refs.scrollView, this.updateThumb);
     });
   }
 };

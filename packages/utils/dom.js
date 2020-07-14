@@ -1,3 +1,34 @@
+import ResizeObserver from "resize-observer-polyfill";
+
+const resizeHandler = function(entries) {
+  for (let entry of entries) {
+    const listeners = entry.target._mj_resizeListeners || [];
+    if (listeners.length) {
+      listeners.forEach(fn => {
+        fn(entry);
+      });
+    }
+  }
+};
+export const addResizeListener = function(element, fn) {
+  if (!element) return;
+  if (!element._mj_resizeListeners) {
+    element._mj_resizeListeners = [];
+    element._mj_ro = new ResizeObserver(resizeHandler);
+    element._mj_ro.observe(element);
+  }
+  element._mj_resizeListeners.push(fn);
+};
+export const removeResizeListener = function(element, fn) {
+  if (!element || !element._mj_resizeListeners) return;
+  element._mj_resizeListeners.splice(
+    element._mj_resizeListeners.indexOf(fn),
+    1
+  );
+  if (!element._mj_resizeListeners.length) {
+    element._mj_ro.disconnect();
+  }
+};
 export const getStyle = function(element, styleName) {
   if (getComputedStyle) {
     return getComputedStyle(element)[styleName];
