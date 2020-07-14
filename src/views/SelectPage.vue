@@ -84,18 +84,6 @@ export default {
         {
           value: 4,
           label: "西瓜"
-        },
-        {
-          value: 5,
-          label: "西瓜"
-        },
-        {
-          value: 6,
-          label: "西瓜"
-        },
-        {
-          value: 7,
-          label: "西瓜"
         }
       ],
       select2: "",

@@ -47,7 +47,9 @@
       append-to-body
       :show-popper.sync="openFlag"
       :reference="$refs.reference"
-      :option-num="optionNum"
+      :option-num="
+        options && typeof options === 'object' ? Object.keys(options).length : 0
+      "
     >
       <slot></slot>
     </select-option-panel>

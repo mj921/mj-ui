@@ -6,7 +6,7 @@
       :class="'mj-select__option-panel--' + popperPosition"
       :style="{
         height:
-          optionNum >= 5 || optionNum === 0 ? '170px' : optionNum * 34 + px,
+          optionNum >= 5 || optionNum === 0 ? '170px' : optionNum * 34 + 'px',
         width: reference && reference.clientWidth + 'px'
       }"
     >
