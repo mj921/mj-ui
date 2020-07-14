@@ -1,8 +1,8 @@
 <template>
   <div class="home">
-    <div class="header"></div>
+    <!-- <div class="header"></div> -->
     <div class="content">
-      <div class="menu">
+      <mj-scroll-view class="menu">
         <mj-menu :default-actived="$route.name">
           <mj-sub-menu>
             <template slot="title">
@@ -62,15 +62,21 @@
             <mj-menu-item index="menu">Menu 菜单</mj-menu-item>
           </mj-sub-menu>
         </mj-menu>
-      </div>
-      <router-view class="main"></router-view>
+      </mj-scroll-view>
+      <mj-scroll-view class="main">
+        <router-view class="router-view"></router-view>
+      </mj-scroll-view>
     </div>
   </div>
 </template>
 
 <script>
+import MjScrollView from "../../packages/scrollView";
 export default {
   name: "home",
+  components: {
+    MjScrollView
+  },
   methods: {
     routerPush(path) {
       this.$router.push(path);
@@ -84,7 +90,7 @@ export default {
   width: 100%;
   height: 100%;
   @include box-sizing(border-box);
-  padding-top: 80px;
+  // padding-top: 80px;
   .header {
     position: absolute;
     top: 0;
@@ -103,18 +109,17 @@ export default {
       top: 0;
       width: 256px;
       height: 100%;
-      overflow-x: hidden;
-      overflow-y: auto;
     }
     .main {
       width: 100%;
       height: 100%;
-      overflow-y: auto;
-      padding-bottom: 20px;
-      padding-right: 20px;
-      padding-left: 20px;
-      box-sizing: border-box;
-      -webkit-box-sizing: border-box;
+      .router-view {
+        width: 100%;
+        height: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+      }
     }
   }
 }

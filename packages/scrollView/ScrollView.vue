@@ -15,14 +15,20 @@
         <slot></slot>
       </div>
     </div>
-    <div class="mj-scroll__bar is-vertical" @click.stop>
+    <transition name="fade">
       <div
-        class="mj-scroll__thumb"
-        @mousedown.stop="handleMouseDown"
-        @select.prevent.stop
-        :style="{ height: thumbHeight, transform: `translateY(${thumbTop})` }"
-      ></div>
-    </div>
+        class="mj-scroll__bar is-vertical"
+        @click.stop
+        v-show="thumbHeight !== '100%'"
+      >
+        <div
+          class="mj-scroll__thumb"
+          @mousedown.stop.prevent="handleMouseDown"
+          @select.prevent.stop
+          :style="{ height: thumbHeight, transform: `translateY(${thumbTop})` }"
+        ></div>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -119,9 +125,18 @@ export default {
     height: 100%;
   }
   .mj-scroll__bar {
+    display: none;
     position: absolute;
     right: 2px;
     bottom: 2px;
+    &.fade-enter-active,
+    .fade-leave-active {
+      transition: opacity 0.5s ease;
+    }
+    &.fade-enter,
+    .fade-leave-to {
+      opacity: 0;
+    }
     .mj-scroll__thumb {
       background-color: rgba(144, 147, 153, 0.3);
       border-radius: 3px;
@@ -131,8 +146,14 @@ export default {
       width: 6px;
       .mj-scroll__thumb {
         width: 100%;
+        cursor: pointer;
         -moz-user-select: none;
       }
+    }
+  }
+  &:hover {
+    .mj-scroll__bar {
+      display: block;
     }
   }
 }

@@ -10,8 +10,8 @@
       </div>
       <div class="mj-doc--pre" :class="{ 'mj-doc--pre-hidden': !showCodeFlag }">
         <pre>
-                    <code ref="code" class="language-html">{{code}}</code>
-                </pre>
+          <code ref="code" class="language-html">{{code}}</code>
+        </pre>
       </div>
       <div class="mj-doc--option" @click="toggleShow">
         <span>{{ showCodeFlag ? "收起" : "展开" }}</span>
