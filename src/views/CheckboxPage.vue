@@ -8,7 +8,7 @@
     <div class="mj-page-title2">Checkbox 属性</div>
     <mj-api-table :data="checkboxAttr" />
     <div class="mj-page-title2">Checkbox 事件</div>
-    <mj-api-table :data="checkboxEvent" />
+    <mj-api-table :data="checkboxEvent" type="event" />
   </div>
 </template>
 <script>

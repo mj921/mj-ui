@@ -16,6 +16,8 @@
     </mj-code>
     <div class="mj-page-title2">Datepicker 属性</div>
     <mj-api-table :data="datepickerAttr" />
+    <div class="mj-page-title2">Datepicker 事件</div>
+    <mj-api-table :data="datepickerEvent" type="event" />
   </div>
 </template>
 <script>
@@ -51,6 +53,13 @@ export default {
           type: "string",
           optional: "—",
           defaultVal: "'yyyy-MM-dd'"
+        }
+      ],
+      datepickerEvent: [
+        {
+          event: "change",
+          desc: "选中状态发生改变时触发",
+          callback: "(当前值，之前的值)"
         }
       ]
     };
