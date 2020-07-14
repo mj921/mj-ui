@@ -9,15 +9,15 @@
       <button
         class="mj-icon-left"
         @click.stop="prev"
-        v-show="optionType === 'day'"
+        v-show="optionType === 'date'"
       ></button>
       <span
         @click.stop="showYearList"
-        v-show="optionType === 'day' || optionType === 'month'"
+        v-show="optionType === 'date' || optionType === 'month'"
       >
         {{ year }}年
       </span>
-      <span v-show="optionType === 'day'" @click.stop="showMonthList">
+      <span v-show="optionType === 'date'" @click.stop="showMonthList">
         {{ month }}月
       </span>
       <span v-show="optionType === 'year'">
@@ -27,7 +27,7 @@
       <button class="mj-icon-more-right" @click.stop="nextMore"></button>
       <button
         class="mj-icon-right"
-        v-show="optionType === 'day'"
+        v-show="optionType === 'date'"
         @click.stop="next"
       ></button>
     </div>
@@ -39,7 +39,7 @@
         :curr-month="currMonth"
         :curr-day="currDay"
         @selectFinish="selectDay"
-        v-show="optionType === 'day'"
+        v-show="optionType === 'date'"
       />
       <month-list @selectFinish="selectMonth" v-show="optionType === 'month'" />
       <year-list
@@ -47,56 +47,6 @@
         @selectFinish="selectYear"
         v-show="optionType === 'year'"
       />
-      <!-- <dt>
-        <dl>日</dl>
-        <dl>一</dl>
-        <dl>二</dl>
-        <dl>三</dl>
-        <dl>四</dl>
-        <dl>五</dl>
-        <dl>六</dl>
-      </dt>
-      <div class="mj-date-picker--content-select-options">
-        <div class="mj-date-picker--content-days" v-if="optionType === 'day'">
-          <dl
-            v-for="item in dayList"
-            :key="item.type + item.num"
-            :class="{
-              'prev-month': item.type === 'prev',
-              'next-month': item.type === 'next',
-              curr:
-                year === currYear && month === currMonth && item.num === currDay
-            }"
-            @click="selectDay(item)"
-          >
-            {{ item.num }}
-          </dl>
-        </div>
-        <div
-          class="mj-date-picker--content-months"
-          v-if="optionType === 'month'"
-        >
-          <dl
-            v-for="(month, index) in monthList"
-            :key="month"
-            @click="selectMonth(index + 1)"
-          >
-            {{ month }}
-          </dl>
-        </div>
-        <div
-          class="mj-date-picker--content-months"
-          v-if="optionType === 'year'"
-        >
-          <dl
-            v-for="year in yearList"
-            :key="'year' + year"
-            @click="selectYear(year)"
-          >
-            {{ year }}
-          </dl>
-        </div>
-      </div> -->
     </div>
   </div>
 </template>
@@ -129,6 +79,10 @@ export default {
     valueDate: {
       type: Date,
       required: true
+    },
+    type: {
+      type: String,
+      default: "date"
     }
   },
   data() {
@@ -137,19 +91,11 @@ export default {
       year: 1992,
       month: 9,
       day: 21,
-      optionType: "day",
+      optionType: "date",
       dateObj: new Date()
     };
   },
   methods: {
-    createYearList(year) {
-      const yearList = [];
-      const startYear = Math.floor(year / 10) * 10;
-      for (let i = 0; i < 10; i++) {
-        yearList.push(startYear + i);
-      }
-      this.yearList = yearList;
-    },
     showYearList() {
       this.optionType = "year";
     },
@@ -158,12 +104,25 @@ export default {
     },
     selectYear(year) {
       this.year = year;
+      if (this.type === "year") {
+        this.$emit("selectFinish", {
+          year: this.year
+        });
+        return;
+      }
       this.optionType = "month";
     },
     selectMonth(month) {
       this.month = month;
       this.dateObj = new Date(`${this.year}-${this.month}-${this.day}`);
-      this.optionType = "day";
+      if (this.type === "month") {
+        this.$emit("selectFinish", {
+          year: this.year,
+          month: this.month
+        });
+        return;
+      }
+      this.optionType = "date";
     },
     selectDay(dateObj) {
       this.day = dateObj.day;
@@ -218,6 +177,7 @@ export default {
     this.year = this.currYear;
     this.month = this.currMonth;
     this.day = this.currDay;
+    this.optionType = this.type;
   }
 };
 </script>

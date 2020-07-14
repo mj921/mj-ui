@@ -9,6 +9,7 @@
       :curr-month="currMonth"
       :curr-day="currDay"
       :value-date="valueDate"
+      :type="type"
       @selectFinish="selectFinish"
     />
   </div>
@@ -38,6 +39,13 @@ export default {
     format: {
       type: String,
       default: "yyyy-MM-dd"
+    },
+    type: {
+      type: String,
+      default: "date",
+      validator(val) {
+        return ["date", "month", "year"].indexOf(val) > -1;
+      }
     }
   },
   data() {
@@ -59,8 +67,17 @@ export default {
     },
     selectFinish(dateObj) {
       this.currYear = dateObj.year;
-      this.currMonth = dateObj.month;
-      this.currDay = dateObj.day;
+      if (this.type === "year") {
+        this.currMonth = 1;
+        this.currDay = 1;
+      } else {
+        this.currMonth = dateObj.month;
+        if (this.type === "month") {
+          this.currDay = 1;
+        } else {
+          this.currDay = dateObj.day;
+        }
+      }
       this.panelVisible = false;
       this.setValue();
     },
