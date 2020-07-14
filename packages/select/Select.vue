@@ -1,7 +1,6 @@
 <template>
-  <div class="mj-select">
+  <div class="mj-select" v-clickoutsit="handlerClose">
     <div
-      v-clickoutsit="handlerClose"
       ref="reference"
       class="mj-select--ipt"
       :class="{
@@ -161,8 +160,7 @@ export default {
     handlerClose() {
       this.openFlag = false;
     },
-    handleClick(e) {
-      e.stopPropagation();
+    handleClick() {
       if (!this.disabled) {
         this.openFlag = !this.openFlag;
       }
@@ -220,16 +218,7 @@ export default {
       } else {
         this.iptHeight = 38;
       }
-    },
-    _domClick() {
-      this.openFlag = false;
     }
-  },
-  created() {
-    document.addEventListener("click", this._domClick);
-  },
-  destroy() {
-    document.removeEventListener("click", this._domClick);
   },
   components: {
     "mj-tag": MjTag,

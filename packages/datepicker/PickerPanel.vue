@@ -1,54 +1,59 @@
 <template>
-  <div
-    class="mj-date-picker__panel"
-    :class="['mj-date-picker__panel--' + popperPosition]"
-    v-show="visible"
-  >
-    <div class="mj-date-picker--header">
-      <button class="mj-icon-more-left" @click.stop="prevMore"></button>
-      <button
-        class="mj-icon-left"
-        @click.stop="prev"
-        v-show="optionType === 'date'"
-      ></button>
-      <span
-        @click.stop="showYearList"
-        v-show="optionType === 'date' || optionType === 'month'"
-      >
-        {{ year }}年
-      </span>
-      <span v-show="optionType === 'date'" @click.stop="showMonthList">
-        {{ month }}月
-      </span>
-      <span v-show="optionType === 'year'">
-        {{ Math.floor(year / 10) * 10 }}年 -
-        {{ Math.floor(year / 10) * 10 + 9 }}年
-      </span>
-      <button class="mj-icon-more-right" @click.stop="nextMore"></button>
-      <button
-        class="mj-icon-right"
-        v-show="optionType === 'date'"
-        @click.stop="next"
-      ></button>
+  <transition name="date-picker-fade">
+    <div
+      class="mj-date-picker__panel"
+      :class="['mj-date-picker__panel--' + popperPosition]"
+      v-show="visible"
+    >
+      <div class="mj-date-picker--header">
+        <button class="mj-icon-more-left" @click.stop="prevMore"></button>
+        <button
+          class="mj-icon-left"
+          @click.stop="prev"
+          v-show="optionType === 'date'"
+        ></button>
+        <span
+          @click.stop="showYearList"
+          v-show="optionType === 'date' || optionType === 'month'"
+        >
+          {{ year }}年
+        </span>
+        <span v-show="optionType === 'date'" @click.stop="showMonthList">
+          {{ month }}月
+        </span>
+        <span v-show="optionType === 'year'">
+          {{ Math.floor(year / 10) * 10 }}年 -
+          {{ Math.floor(year / 10) * 10 + 9 }}年
+        </span>
+        <button class="mj-icon-more-right" @click.stop="nextMore"></button>
+        <button
+          class="mj-icon-right"
+          v-show="optionType === 'date'"
+          @click.stop="next"
+        ></button>
+      </div>
+      <div class="mj-date-picker--content">
+        <date-list
+          ref="dateList"
+          :date="dateObj"
+          :curr-year="currYear"
+          :curr-month="currMonth"
+          :curr-day="currDay"
+          @selectFinish="selectDay"
+          v-show="optionType === 'date'"
+        />
+        <month-list
+          @selectFinish="selectMonth"
+          v-show="optionType === 'month'"
+        />
+        <year-list
+          :year="year"
+          @selectFinish="selectYear"
+          v-show="optionType === 'year'"
+        />
+      </div>
     </div>
-    <div class="mj-date-picker--content">
-      <date-list
-        ref="dateList"
-        :date="dateObj"
-        :curr-year="currYear"
-        :curr-month="currMonth"
-        :curr-day="currDay"
-        @selectFinish="selectDay"
-        v-show="optionType === 'date'"
-      />
-      <month-list @selectFinish="selectMonth" v-show="optionType === 'month'" />
-      <year-list
-        :year="year"
-        @selectFinish="selectYear"
-        v-show="optionType === 'year'"
-      />
-    </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -206,6 +211,18 @@ $datapicker_optionsWidth: 280px;
   border: 1px solid $black_borderColor;
   background-color: $white;
   font-size: 14px;
+  &.date-picker-fade-enter-active,
+  &.date-picker-fade-leave-active {
+    transition: opacity 0.5s ease;
+  }
+  &.date-picker-fade-enter,
+  &.date-picker-fade-leave-to {
+    opacity: 0;
+  }
+  &.mj-select__option-panel--top {
+    margin-top: -50px;
+    transform: translateY(-100%);
+  }
   &.mj-date-picker__panel--top {
     transform: translateY(-100%);
     margin-top: -50px;

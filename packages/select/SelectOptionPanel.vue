@@ -60,11 +60,11 @@ export default {
   background-color: $white;
   box-shadow: 0 0 5px 0 $black_borderColor;
   &.fade-enter-active,
-  .fade-leave-active {
+  &.fade-leave-active {
     transition: opacity 0.5s ease;
   }
   &.fade-enter,
-  .fade-leave-to {
+  &.fade-leave-to {
     opacity: 0;
   }
   &.mj-select__option-panel--top {

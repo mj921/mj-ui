@@ -69,7 +69,8 @@ export default {
       this.$el.style.zIndex = PopperManage.getZIndex();
     },
     updatePopperPosition() {
-      const reference = this.reference && this.reference.$el;
+      const reference =
+        (this.reference && this.reference.$el) || this.reference;
       const refBcr = reference.getBoundingClientRect();
       if (this.appendToBody) {
         const top = refBcr.bottom + document.body.scrollTop;
@@ -94,7 +95,9 @@ export default {
       }
     },
     scrollHandle() {
-      this.updatePopperPosition();
+      if (this.reference) {
+        this.updatePopperPosition();
+      }
     },
     closePopper() {
       this.$emit("update:visible", false);
@@ -107,6 +110,7 @@ export default {
     this._popperId = popperId++;
   },
   beforeDestroy() {
+    this.destroyPopper();
     if (
       this._popperMask &&
       this._mj_parentEl &&
