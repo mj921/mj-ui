@@ -49,6 +49,11 @@ export default new Router({
           component: () => import("./views/InputPage.vue")
         },
         {
+          path: "/message",
+          name: "message",
+          component: () => import("./views/MessagePage.vue")
+        },
+        {
           path: "/radio",
           name: "radio",
           component: () => import("./views/RadioPage.vue")

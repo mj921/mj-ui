@@ -18,6 +18,7 @@ import TableColumn from "./tableColumn/index";
 import Tag from "./tag/index";
 import Transfer from "./transfer/index";
 import Dialog from "./dialog";
+import Message from "./message";
 
 const components = {
   Button,
@@ -48,6 +49,7 @@ export default {
         Vue.component(components[k].name, components[k]);
       })(key);
     });
+    Vue.prototype.$message = Message;
   },
   ...components
 };

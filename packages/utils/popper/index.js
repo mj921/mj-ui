@@ -53,7 +53,8 @@ export default {
         return;
       }
       this._isRenderPopper = true;
-      this.scrollContainer.addEventListener("scroll", this.scrollHandle);
+      this.scrollContainer &&
+        this.scrollContainer.addEventListener("scroll", this.scrollHandle);
       if (this.reference) {
         this.updatePopperPosition();
       } else if (this.appendToBody) {
@@ -89,7 +90,8 @@ export default {
       });
     },
     destroyPopper() {
-      this.scrollContainer.removeEventListener("scroll", this.scrollHandle);
+      this.scrollContainer &&
+        this.scrollContainer.removeEventListener("scroll", this.scrollHandle);
       if (this.mask) {
         PopperManage.closeMask(this._popperMask);
       }
