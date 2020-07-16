@@ -19,6 +19,7 @@ import Tag from "./tag/index";
 import Transfer from "./transfer/index";
 import Dialog from "./dialog";
 import Message from "./message";
+import MessageBox from "./messageBox";
 
 const components = {
   Button,
@@ -50,6 +51,9 @@ export default {
       })(key);
     });
     Vue.prototype.$message = Message;
+    Vue.prototype.$msgbox = MessageBox;
+    Vue.prototype.$alert = MessageBox.alert;
+    Vue.prototype.$confirm = MessageBox.confirm;
   },
   ...components
 };

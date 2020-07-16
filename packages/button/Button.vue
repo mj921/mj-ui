@@ -61,7 +61,7 @@ export default {
   &:hover {
     color: $blue;
     border-color: lighten($blue, 10);
-    background-color: lighten($blue, 29);
+    background-color: lighten($blue, 39);
   }
   @mixin button-type($color) {
     background-color: $color;

@@ -115,7 +115,7 @@ export default {
     this.destroyPopper();
     if (
       this._popperMask &&
-      this._mj_parentEl &&
+      this._popperMask._mj_parentEl &&
       this._popperMask._mj_parentEl.removeChild
     ) {
       this._popperMask._mj_parentEl.removeChild(this._popperMask);
