@@ -8,30 +8,30 @@
       <mj-button @click="openNotif(10000)">关闭时间10s</mj-button>
       <mj-button @click="openNotif(0)">不自动关闭</mj-button>
     </mj-code>
-    <mj-code
+    <mj-demo
       title="不同位置"
       describe="可以让 Notification 从屏幕四角中的任意一角弹出"
-      :code="code3"
+      demo-url="notification/NotificationDemo3.vue"
     >
-      <mj-button @click="openNotifPos('top-right')">右上角</mj-button>
-      <mj-button @click="openNotifPos('top-left')">左上角</mj-button>
-      <mj-button @click="openNotifPos('bottom-right')">右下角</mj-button>
-      <mj-button @click="openNotifPos('bottom-left')">左下角</mj-button>
-    </mj-code>
+      <notification-demo3 />
+    </mj-demo>
     <div class="mj-page-title2">Options</div>
     <mj-api-table :data="notificationAttr" />
   </div>
 </template>
 <script>
 import codeJson from "@/docCodes/notification";
+import NotificationDemo3 from "@/example/notification/NotificationDemo3";
 
 export default {
   name: "RadioPage",
+  components: {
+    NotificationDemo3
+  },
   data() {
     return {
       code1: codeJson.code1,
       code2: codeJson.code2,
-      code3: codeJson.code3,
       notificationAttr: [
         {
           prop: "title",

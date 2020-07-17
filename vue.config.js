@@ -8,6 +8,17 @@ module.exports = {
     types.forEach(type =>
       addStyleResource(config.module.rule("scss").oneOf(type))
     );
+  },
+  devServer: {
+    before: function(app) {
+      app.get("*.vue", function(req, res) {
+        res.sendFile(path.join(__dirname, req.path), {
+          headers: {
+            "Content-Type": "text/html;charset=utf-8"
+          }
+        });
+      });
+    }
   }
 };
 
