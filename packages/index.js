@@ -20,6 +20,7 @@ import Transfer from "./transfer/index";
 import Dialog from "./dialog";
 import Message from "./message";
 import MessageBox from "./messageBox";
+import Notification from "./notification";
 
 const components = {
   Button,
@@ -54,6 +55,11 @@ export default {
     Vue.prototype.$msgbox = MessageBox;
     Vue.prototype.$alert = MessageBox.alert;
     Vue.prototype.$confirm = MessageBox.confirm;
+    Vue.prototype.$confirm = MessageBox.confirm;
+    Vue.prototype.$notification = Notification;
   },
-  ...components
+  ...components,
+  Message,
+  MessageBox,
+  Notification
 };

@@ -71,6 +71,12 @@
             <mj-menu-item @click="routerPush('/messageBox')" index="messageBox">
               MessageBox 弹框
             </mj-menu-item>
+            <mj-menu-item
+              @click="routerPush('/notification')"
+              index="notification"
+            >
+              Notification 通知
+            </mj-menu-item>
           </mj-sub-menu>
           <mj-sub-menu>
             <template slot="title">
