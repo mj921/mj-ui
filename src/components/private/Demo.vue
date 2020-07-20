@@ -52,10 +52,9 @@ export default {
       this.code =
         "\n" +
         this.readFile(
-          process.env.NODE_ENV === "development"
-            ? "./src/example/"
-            : "https://raw.githubusercontent.com/mj921/mj-ui/master/src/example/" +
-                this.demoUrl
+          process.env.NODE_ENV === "production"
+            ? "https://raw.githubusercontent.com/mj921/mj-ui/master/src/example/"
+            : "./src/example/" + this.demoUrl
         );
     },
     readFile(filePath) {
