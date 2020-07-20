@@ -49,7 +49,14 @@ export default {
       this.showCodeFlag = !this.showCodeFlag;
     },
     getCode() {
-      this.code = "\n" + this.readFile("./src/example/" + this.demoUrl);
+      this.code =
+        "\n" +
+        this.readFile(
+          process.env.NODE_ENV === "development"
+            ? "./src/example/"
+            : "https://raw.githubusercontent.com/mj921/mj-ui/master/src/example/" +
+                this.demoUrl
+        );
     },
     readFile(filePath) {
       // 创建一个新的xhr对象
