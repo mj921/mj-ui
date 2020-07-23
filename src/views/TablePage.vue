@@ -1,98 +1,34 @@
 <template>
   <div class="mj-page">
     <div class="mj-page-title1">Table 表格</div>
-    <mj-code title="基础用法" describe="基础的表格用法" :code="code1">
-      <mj-table :data="data1">
-        <mj-table-column
-          prop="prop"
-          label="参数"
-          width="100px"
-        ></mj-table-column>
-        <mj-table-column
-          prop="desc"
-          label="说明"
-          width="200px"
-        ></mj-table-column>
-        <mj-table-column
-          prop="type"
-          label="类型"
-          width="100px"
-        ></mj-table-column>
-        <mj-table-column
-          prop="optional"
-          label="可选值"
-          width="200px"
-        ></mj-table-column>
-        <mj-table-column
-          prop="defaultVal"
-          label="默认值"
-          width="100px"
-        ></mj-table-column>
-      </mj-table>
-    </mj-code>
-    <mj-code
+    <mj-demo
+      title="基础用法"
+      describe="基础的表格用法"
+      demo-url="table/TableDemo1.vue"
+    >
+      <table-demo1 />
+    </mj-demo>
+    <mj-demo
       title="自定义列内容"
       describe="formatter自定义格式化方法"
-      :code="code2"
+      demo-url="table/TableDemo2.vue"
     >
-      <mj-table :data="data2">
-        <mj-table-column
-          prop="width"
-          label="宽"
-          width="100px"
-        ></mj-table-column>
-        <mj-table-column
-          prop="height"
-          label="高"
-          width="100px"
-        ></mj-table-column>
-        <mj-table-column
-          prop="area"
-          label="面积"
-          width="100px"
-          :formatter="fmt"
-        ></mj-table-column>
-      </mj-table>
-    </mj-code>
-    <mj-code title="列表为空" describe="列表为空时列表展示" :code="code3">
-      <mj-table :data="[]">
-        <mj-table-column
-          prop="width"
-          label="宽"
-          width="100px"
-        ></mj-table-column>
-        <mj-table-column
-          prop="height"
-          label="高"
-          width="100px"
-        ></mj-table-column>
-        <mj-table-column
-          prop="area"
-          label="面积"
-          width="100px"
-          :formatter="fmt"
-        ></mj-table-column>
-      </mj-table>
-    </mj-code>
-    <mj-code title="slot插槽" describe="slot插槽" :code="code4">
-      <mj-table :data="data2">
-        <mj-table-column
-          prop="width"
-          label="宽"
-          width="100px"
-        ></mj-table-column>
-        <mj-table-column
-          prop="height"
-          label="高"
-          width="100px"
-        ></mj-table-column>
-        <mj-table-column prop="area" label="面积" width="100px">
-          <template v-slot="row">
-            {{ row.height * row.width }}
-          </template>
-        </mj-table-column>
-      </mj-table>
-    </mj-code>
+      <table-demo2 />
+    </mj-demo>
+    <mj-demo
+      title="列表为空"
+      describe="列表为空时列表展示"
+      demo-url="table/TableDemo3.vue"
+    >
+      <table-demo3 />
+    </mj-demo>
+    <mj-demo
+      title="slot插槽"
+      describe="插槽名称默认prop 可以通过slotName设置"
+      demo-url="table/TableDemo4.vue"
+    >
+      <table-demo4 />
+    </mj-demo>
     <div class="mj-page-title2">Table 属性</div>
     <mj-api-table :data="tableAttr" />
     <div class="mj-page-title2">TableColumn 属性</div>
@@ -100,45 +36,21 @@
   </div>
 </template>
 <script>
-import codeJson from "@/docCodes/table";
+import TableDemo1 from "../example/table/TableDemo1";
+import TableDemo2 from "../example/table/TableDemo2";
+import TableDemo3 from "../example/table/TableDemo3";
+import TableDemo4 from "../example/table/TableDemo4";
 
 export default {
   name: "TablePage",
+  components: {
+    TableDemo1,
+    TableDemo2,
+    TableDemo3,
+    TableDemo4
+  },
   data() {
     return {
-      data1: [
-        {
-          prop: "type",
-          desc: "按钮类型",
-          type: "string",
-          optional: "primary | danger | warning | text",
-          defaultVal: "—"
-        },
-        {
-          prop: "size",
-          desc: "按钮大小",
-          type: "string",
-          optional: "medium | small | mini",
-          defaultVal: "—"
-        },
-        {
-          prop: "disabled",
-          desc: "是否禁用",
-          type: "string | boolean",
-          optional: "—",
-          defaultVal: "false"
-        }
-      ],
-      data2: [
-        {
-          width: 100,
-          height: 200
-        }
-      ],
-      code1: codeJson.code1,
-      code2: codeJson.code2,
-      code3: codeJson.code3,
-      code4: codeJson.code4,
       tableAttr: [
         {
           prop: "data",

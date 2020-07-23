@@ -1,25 +1,14 @@
 <template>
   <div>
-    <mj-table
-      :data="data"
-      :columns="columns1"
-      v-if="type === 'attr'"
-    ></mj-table>
+    <mj-table :data="data" :columns="columns" />
   </div>
 </template>
+
 <script>
 export default {
-  name: "MjApiTable",
-  props: {
-    type: {
-      type: String,
-      default: "attr"
-    },
-    data: Array
-  },
   data() {
     return {
-      columns1: [
+      columns: [
         {
           prop: "prop",
           label: "参数",
@@ -46,24 +35,32 @@ export default {
           width: 100
         }
       ],
-      columns2: [
+      data: [
         {
-          prop: "event",
-          label: "事件",
-          width: 100
+          prop: "type",
+          desc: "按钮类型",
+          type: "string",
+          optional: "primary | danger | warning | text",
+          defaultVal: "—"
         },
         {
-          prop: "desc",
-          label: "说明",
-          width: 200
+          prop: "size",
+          desc: "按钮大小",
+          type: "string",
+          optional: "medium | small | mini",
+          defaultVal: "—"
         },
         {
-          prop: "callback",
-          label: "回调函数",
-          width: 200
+          prop: "disabled",
+          desc: "是否禁用",
+          type: "string | boolean",
+          optional: "—",
+          defaultVal: "false"
         }
       ]
     };
   }
 };
 </script>
+
+<style></style>

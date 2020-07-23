@@ -4,7 +4,7 @@
       <thead>
         <tr>
           <th
-            v-for="(column, i) in columnList"
+            v-for="(column, i) in columns"
             :key="i"
             :style="{
               width: column.width,
@@ -19,23 +19,20 @@
       <tbody>
         <template v-if="data && data.length > 0">
           <tr v-for="(row, i) in data" :key="'tr' + i">
-            <template v-for="(column, j) in columnList">
+            <template v-for="(column, j) in columns">
               <td
                 :key="'tr' + i + ',td' + j"
                 :style="{
                   'text-align': column.align
                 }"
               >
-                <div
-                  v-if="
-                    column.$scopedSlots &&
-                      Object.keys(column.$scopedSlots).length > 0
-                  "
-                >
-                  <table-slot
-                    :vvnode="column.$scopedSlots"
-                    :row="row"
-                  ></table-slot>
+                <div v-if="column.type === 'slot'">
+                  <slot
+                    :name="column.slotName || column.prop"
+                    v-bind:row="row"
+                    v-bind:column="column"
+                    v-bind:index="i"
+                  ></slot>
                 </div>
                 <div v-else>
                   {{
@@ -49,7 +46,7 @@
           </tr>
         </template>
         <tr v-else>
-          <td class="mj-table--empty" :colspan="columnList.length">
+          <td class="mj-table--empty" :colspan="columns.length">
             {{ emptyText }}
           </td>
         </tr>
@@ -59,16 +56,6 @@
   </div>
 </template>
 <script>
-const TableSlot = {
-  props: {
-    vvnode: Object,
-    row: Object
-  },
-  render(h) {
-    return h("div", [this.vvnode.default(this.row)]);
-  }
-};
-
 export default {
   name: "MjTable",
   props: {
@@ -82,22 +69,16 @@ export default {
     emptyText: {
       type: String,
       default: "暂无数据"
+    },
+    columns: {
+      type: Array,
+      default: function() {
+        return [];
+      }
     }
   },
-  provide() {
-    return {
-      addColumn: column => {
-        this.columnList.push(column);
-      }
-    };
-  },
   data() {
-    return {
-      columnList: []
-    };
-  },
-  components: {
-    "table-slot": TableSlot
+    return {};
   }
 };
 </script>
