@@ -21,7 +21,7 @@ export default {
           prop: "area",
           label: "面积",
           formatter: function(row) {
-            return row.width * row.height;
+            return row.width * row.height + "平方";
           }
         }
       ],

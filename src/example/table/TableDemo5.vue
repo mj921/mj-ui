@@ -17,15 +17,28 @@ export default {
     return {
       columns: [
         {
+          fixed: "left",
           prop: "width",
-          label: "宽"
+          label: "宽",
+          width: 200
         },
         {
           prop: "height",
           label: "高",
-          slotHeader: true
+          width: 200
         },
         {
+          prop: "color",
+          label: "颜色",
+          width: 200
+        },
+        {
+          prop: "address",
+          label: "地址",
+          width: 500
+        },
+        {
+          fixed: "right",
           prop: "area",
           label: "面积",
           type: "slot"
@@ -34,7 +47,9 @@ export default {
       data: [
         {
           width: 100,
-          height: 200
+          height: 200,
+          color: "红色",
+          address: "浙江省杭州市余杭区崇贤街道"
         }
       ]
     };

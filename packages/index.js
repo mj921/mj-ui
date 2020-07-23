@@ -14,7 +14,6 @@ import Select from "./select/index";
 import SubMenu from "./subMenu/index";
 import Switch from "./switch/index";
 import Table from "./table/index";
-import TableColumn from "./tableColumn/index";
 import Tag from "./tag/index";
 import Transfer from "./transfer/index";
 import Dialog from "./dialog";
@@ -40,7 +39,6 @@ const components = {
   SubMenu,
   Switch,
   Table,
-  TableColumn,
   Tag,
   Transfer
 };

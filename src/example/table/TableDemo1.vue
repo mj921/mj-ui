@@ -10,52 +10,23 @@ export default {
     return {
       columns: [
         {
-          prop: "prop",
-          label: "参数",
-          width: 100
+          prop: "width",
+          label: "宽"
         },
         {
-          prop: "desc",
-          label: "说明",
-          width: 200
+          prop: "height",
+          label: "高"
         },
         {
-          prop: "type",
-          label: "类型",
-          width: 100
-        },
-        {
-          prop: "optional",
-          label: "可选值",
-          width: 200
-        },
-        {
-          prop: "defaultVal",
-          label: "默认值",
-          width: 100
+          prop: "area",
+          label: "面积"
         }
       ],
       data: [
         {
-          prop: "type",
-          desc: "按钮类型",
-          type: "string",
-          optional: "primary | danger | warning | text",
-          defaultVal: "—"
-        },
-        {
-          prop: "size",
-          desc: "按钮大小",
-          type: "string",
-          optional: "medium | small | mini",
-          defaultVal: "—"
-        },
-        {
-          prop: "disabled",
-          desc: "是否禁用",
-          type: "string | boolean",
-          optional: "—",
-          defaultVal: "false"
+          width: 100,
+          height: 200,
+          area: 20000
         }
       ]
     };

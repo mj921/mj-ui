@@ -28,7 +28,7 @@ export default {
         {
           prop: "desc",
           label: "说明",
-          width: 200
+          minWidth: 200
         },
         {
           prop: "type",

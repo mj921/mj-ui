@@ -1,16 +1,16 @@
 <template>
   <div class="mj-doc">
     <div class="mj-doc--title">{{ title }}</div>
-    <div class="mj-doc--describe" v-if="describe.length > 0">
+    <p class="mj-doc--describe" v-if="describe.length > 0">
       {{ describe }}
-    </div>
+    </p>
     <div class="mj-doc--code">
       <div class="mj-doc--demo" ref="demo">
         <slot></slot>
       </div>
       <div class="mj-doc--pre" :class="{ 'mj-doc--pre-hidden': !showCodeFlag }">
         <pre>
-          <code ref="code" class="language-html">{{code}}</code>
+          <code ref="code" class="language-html">{{ code }}</code>
         </pre>
       </div>
       <div class="mj-doc--option" @click="toggleShow">

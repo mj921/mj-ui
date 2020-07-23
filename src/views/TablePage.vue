@@ -2,36 +2,17 @@
   <div class="mj-page">
     <div class="mj-page-title1">Table 表格</div>
     <mj-demo
-      title="基础用法"
-      describe="基础的表格用法"
-      demo-url="table/TableDemo1.vue"
+      v-for="(demo, i) in demoList"
+      :key="i"
+      :title="demo.title"
+      :describe="demo.describe"
+      :demo-url="demo.demoUrl"
     >
-      <table-demo1 />
-    </mj-demo>
-    <mj-demo
-      title="自定义列内容"
-      describe="formatter自定义格式化方法"
-      demo-url="table/TableDemo2.vue"
-    >
-      <table-demo2 />
-    </mj-demo>
-    <mj-demo
-      title="列表为空"
-      describe="列表为空时列表展示"
-      demo-url="table/TableDemo3.vue"
-    >
-      <table-demo3 />
-    </mj-demo>
-    <mj-demo
-      title="slot插槽"
-      describe="插槽名称默认prop 可以通过slotName设置"
-      demo-url="table/TableDemo4.vue"
-    >
-      <table-demo4 />
+      <component :is="demo.demoComp"></component>
     </mj-demo>
     <div class="mj-page-title2">Table 属性</div>
     <mj-api-table :data="tableAttr" />
-    <div class="mj-page-title2">TableColumn 属性</div>
+    <div class="mj-page-title2">columns 属性</div>
     <mj-api-table :data="tableColumnAttr" />
   </div>
 </template>
@@ -40,6 +21,7 @@ import TableDemo1 from "../example/table/TableDemo1";
 import TableDemo2 from "../example/table/TableDemo2";
 import TableDemo3 from "../example/table/TableDemo3";
 import TableDemo4 from "../example/table/TableDemo4";
+import TableDemo5 from "../example/table/TableDemo5";
 
 export default {
   name: "TablePage",
@@ -47,10 +29,44 @@ export default {
     TableDemo1,
     TableDemo2,
     TableDemo3,
-    TableDemo4
+    TableDemo4,
+    TableDemo5
   },
   data() {
     return {
+      demoList: [
+        {
+          title: "基础用法",
+          describe: "基础的表格用法",
+          demoUrl: "table/TableDemo1.vue",
+          demoComp: TableDemo1
+        },
+        {
+          title: "自定义列内容",
+          describe: "formatter自定义格式化方法",
+          demoUrl: "table/TableDemo2.vue",
+          demoComp: TableDemo2
+        },
+        {
+          title: "列表为空",
+          describe: "列表为空时列表展示",
+          demoUrl: "table/TableDemo3.vue",
+          demoComp: TableDemo3
+        },
+        {
+          title: "slot插槽",
+          describe:
+            "列中使用时 type设为'slot',插槽名称为prop,可以通过slotName设置；设置表头时，slotHeader设为true。插槽名称为porp + 'Header'",
+          demoUrl: "table/TableDemo4.vue",
+          demoComp: TableDemo4
+        },
+        {
+          title: "固定列",
+          describe: "column 设置 fixed 为 left 或 right 固定列",
+          demoUrl: "table/TableDemo5.vue",
+          demoComp: TableDemo5
+        }
+      ],
       tableAttr: [
         {
           prop: "data",
@@ -85,16 +101,30 @@ export default {
         {
           prop: "width",
           desc: "列宽度",
-          type: "string",
+          type: "string|number",
           optional: "—",
           defaultVal: "—"
         },
         {
           prop: "min-width",
           desc: "列最小宽度",
-          type: "string",
+          type: "string|number",
           optional: "—",
           defaultVal: "—"
+        },
+        {
+          prop: "type",
+          desc: "列类型",
+          type: "string",
+          optional: "slot",
+          defaultVal: "—"
+        },
+        {
+          prop: "slotHeader",
+          desc: "表头是否用slot",
+          type: "boolean",
+          optional: "—",
+          defaultVal: "false"
         },
         {
           prop: "formatter",
