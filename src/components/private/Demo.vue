@@ -53,7 +53,7 @@ export default {
         "\n" +
         this.readFile(
           (process.env.NODE_ENV === "production"
-            ? "https://raw.githubusercontent.com/mj921/mj-ui/master/src/example/"
+            ? "https://github.com//mj921/mj-ui/master/src/example/"
             : "./src/example/") + this.demoUrl
         );
     },
