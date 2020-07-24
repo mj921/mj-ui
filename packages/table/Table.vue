@@ -1,6 +1,12 @@
 <template>
   <div class="mj-table" ref="tableRootWrap">
-    <div class="mj-table-scroll" ref="scroll">
+    <mj-scroll-view
+      :overflow-x="true"
+      :overflow-y="false"
+      class="mj-table-scroll"
+      ref="scroll"
+      @scroll="scrollHandle"
+    >
       <div class="mj-table-header__wrap">
         <table
           :style="{
@@ -91,13 +97,12 @@
           </tbody>
         </table>
       </div>
-    </div>
+    </mj-scroll-view>
     <div
       class="mj-table-fixed__wrap--left"
       :class="{ 'hidden-box-shadow': scrollPosition === 'left' }"
       :style="{
-        width: leftFixedWidth + 'px',
-        bottom: fixedBottom + 'px'
+        width: leftFixedWidth + 'px'
       }"
       v-if="
         leftFixedNum > 0 &&
@@ -200,8 +205,7 @@
       class="mj-table-fixed__wrap--right"
       :class="{ 'hidden-box-shadow': scrollPosition === 'right' }"
       :style="{
-        width: rightFixedWidth + 'px',
-        bottom: fixedBottom + 'px'
+        width: rightFixedWidth + 'px'
       }"
       v-if="
         rightFixedNum > 0 &&
@@ -303,13 +307,13 @@
   </div>
 </template>
 <script>
-import {
-  addResizeListener,
-  removeResizeListener,
-  getScrollBarWidth
-} from "../utils/dom";
+import MjScrollView from "../scrollView";
+import { addResizeListener, removeResizeListener } from "../utils/dom";
 export default {
   name: "MjTable",
+  components: {
+    MjScrollView
+  },
   props: {
     data: {
       type: Array,
@@ -387,7 +391,6 @@ export default {
       colList: [],
       rightFixedNum: 0,
       leftFixedNum: 0,
-      fixedBottom: 0,
       scrollPosition: "left"
     };
   },
@@ -464,12 +467,12 @@ export default {
       this.leftFixedNum = left;
       this.rightFixedNum = right;
     },
-    scrollHandle() {
-      if (this.$refs.scroll.scrollLeft === 0) {
+    scrollHandle(e) {
+      if (e.target.scrollLeft === 0) {
         this.scrollPosition = "left";
       } else if (
-        this.$refs.scroll.scrollLeft + this.$refs.scroll.offsetWidth ===
-        this.$refs.scroll.scrollWidth
+        e.target.scrollLeft + e.target.offsetWidth ===
+        e.target.scrollWidth
       ) {
         this.scrollPosition = "right";
       } else {
@@ -480,11 +483,8 @@ export default {
   mounted() {
     this.getColRealAttr();
     addResizeListener(this.$refs.tableRootWrap, this.getColRealAttr);
-    this.fixedBottom = getScrollBarWidth();
-    this.$refs.scroll.addEventListener("scroll", this.scrollHandle);
     this.$emit("hook:beforeDestroy", () => {
       removeResizeListener(this.$refs.tableRootWrap, this.getColRealAttr);
-      this.$refs.scroll.removeEventListener("scroll", this.scrollHandle);
     });
   },
   created() {
@@ -497,9 +497,6 @@ export default {
 .mj-table {
   position: relative;
   overflow: hidden;
-  .mj-table-scroll {
-    overflow-x: auto;
-  }
   .mj-table-fixed__wrap--left {
     position: absolute;
     top: 0;

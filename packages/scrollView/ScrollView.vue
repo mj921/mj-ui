@@ -7,7 +7,8 @@
       :style="{
         overflowY: overflowY ? 'scroll' : 'hidden',
         overflowX: overflowX ? 'scroll' : 'hidden',
-        marginRight: -barWidth + 'px'
+        marginRight: -barWidth + 'px',
+        marginBottom: -barWidth + 'px'
       }"
       @scroll="handleScroll"
     >
@@ -15,24 +16,25 @@
         <slot></slot>
       </div>
     </div>
-    <transition name="fade">
-      <div
-        class="mj-scroll__bar is-vertical"
-        @click.stop
-        v-show="thumbHeight !== '100%'"
-      >
-        <div
-          class="mj-scroll__thumb"
-          @mousedown.stop.prevent="handleMouseDown"
-          @select.prevent.stop
-          :style="{ height: thumbHeight, transform: `translateY(${thumbTop})` }"
-        ></div>
-      </div>
-    </transition>
+    <scroll-thumb
+      class="mj-scroll__bar"
+      ref="thumbVerical"
+      v-if="overflowY"
+      verical
+      :scroll-container="scrollWrap"
+    />
+    <scroll-thumb
+      class="mj-scroll__bar"
+      ref="thumbHorizontal"
+      v-if="overflowX"
+      :verical="false"
+      :scroll-container="scrollWrap"
+    />
   </div>
 </template>
 
 <script>
+import ScrollThumb from "./ScrollThumb";
 import {
   getScrollBarWidth,
   addResizeListener,
@@ -40,6 +42,9 @@ import {
 } from "../utils/dom";
 export default {
   name: "mj-scroll-view",
+  components: {
+    ScrollThumb
+  },
   props: {
     overflowY: {
       type: Boolean,
@@ -60,7 +65,8 @@ export default {
       thumbHeight: 0,
       thumbTop: 0,
       thumbScrollTop: 0,
-      moveY: 0
+      moveY: 0,
+      scrollWrap: null
     };
   },
   computed: {
@@ -83,33 +89,13 @@ export default {
   },
   methods: {
     updateThumb() {
-      if (
-        !this.$refs ||
-        !this.$refs.scrollWrap ||
-        this.$refs.scrollWrap.scrollHeight === 0
-      ) {
-        this.thumbHeight = 0;
-        return;
-      }
-      this.thumbHeight =
-        (this.$refs.scrollWrap.clientHeight /
-          this.$refs.scrollWrap.scrollHeight) *
-          100 +
-        "%";
+      this.$refs.thumbVerical && this.$refs.thumbVerical.updateThumb();
+      this.$refs.thumbHorizontal && this.$refs.thumbHorizontal.updateThumb();
     },
-    handleScroll() {
-      if (
-        !this.$refs ||
-        !this.$refs.scrollWrap ||
-        this.$refs.scrollWrap.clientHeight === 0
-      ) {
-        this.thumbTop = 0;
-        return;
-      }
-      this.thumbTop =
-        (this.$refs.scrollWrap.scrollTop / this.$refs.scrollWrap.clientHeight) *
-          100 +
-        "%";
+    handleScroll(e) {
+      this.$emit("scroll", e);
+      this.$refs.thumbVerical && this.$refs.thumbVerical.handleScroll();
+      this.$refs.thumbHorizontal && this.$refs.thumbHorizontal.handleScroll();
     },
     handleMouseDown(e) {
       this.thumbScrollTop = this.$refs.scrollWrap.scrollTop;
@@ -128,6 +114,7 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
+      this.scrollWrap = this.$refs.scrollWrap;
       this.updateThumb();
     });
     addResizeListener(this.$refs.scrollView, this.updateThumb);
@@ -146,35 +133,8 @@ export default {
   .mj-scroll__wrap {
     height: 100%;
   }
-  .mj-scroll__bar {
-    display: none;
-    position: absolute;
-    right: 2px;
-    bottom: 2px;
-    &.fade-enter-active,
-    .fade-leave-active {
-      transition: opacity 0.5s ease;
-    }
-    &.fade-enter,
-    .fade-leave-to {
-      opacity: 0;
-    }
-    .mj-scroll__thumb {
-      background-color: rgba(144, 147, 153, 0.3);
-      border-radius: 3px;
-    }
-    &.is-vertical {
-      height: calc(100% - 4px);
-      width: 6px;
-      .mj-scroll__thumb {
-        width: 100%;
-        cursor: pointer;
-        -moz-user-select: none;
-      }
-    }
-  }
   &:hover {
-    .mj-scroll__bar {
+    & > .mj-scroll__bar {
       display: block;
     }
   }
