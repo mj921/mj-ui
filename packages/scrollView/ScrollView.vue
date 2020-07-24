@@ -7,8 +7,10 @@
       :style="{
         overflowY: overflowY ? 'scroll' : 'hidden',
         overflowX: overflowX ? 'scroll' : 'hidden',
-        marginRight: -barWidth + 'px',
-        marginBottom: -barWidth + 'px'
+        marginRight: (overflowY ? -barWidth : '') + 'px',
+        marginBottom: (overflowX ? -barWidth : '') + 'px',
+        height: overflowY ? '100%' : '',
+        width: overflowX ? '100%' : ''
       }"
       @scroll="handleScroll"
     >
@@ -130,9 +132,6 @@ export default {
   overflow: hidden;
   position: relative;
   height: 100%;
-  .mj-scroll__wrap {
-    height: 100%;
-  }
   &:hover {
     & > .mj-scroll__bar {
       display: block;

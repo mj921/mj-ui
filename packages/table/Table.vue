@@ -1,5 +1,5 @@
 <template>
-  <div class="mj-table" ref="tableRootWrap">
+  <div class="mj-table" ref="tableRootWrap" :style="{ height: height }">
     <mj-scroll-view
       :overflow-x="true"
       :overflow-y="false"
@@ -7,7 +7,14 @@
       ref="scroll"
       @scroll="scrollHandle"
     >
-      <div class="mj-table-header__wrap">
+      <div
+        class="mj-table-header__wrap"
+        ref="tableHeader"
+        :style="{
+          width: adaptiveTableFlag ? '' : tableWidth + 'px',
+          minWidth: adaptiveTableFlag ? tableWidth + 'px' : ''
+        }"
+      >
         <table
           :style="{
             width: adaptiveTableFlag ? '' : tableWidth + 'px',
@@ -31,12 +38,19 @@
                   'text-align': column.align
                 }"
               >
-                <slot
-                  v-if="column.slotHeader"
-                  :name="column.prop + 'Header'"
-                  v-bind:column="column"
-                  v-bind:index="i"
-                ></slot>
+                <template v-if="column.slotHeader">
+                  <slot
+                    v-if="['left', 'right'].indexOf(column.fixed) === -1"
+                    :name="column.prop + 'Header'"
+                    v-bind:column="column"
+                    v-bind:index="i"
+                  ></slot>
+                  <table-slot
+                    v-else
+                    :vvnode="$scopedSlots[column.prop + 'Header']"
+                    :scope="{ column, i }"
+                  ></table-slot
+                ></template>
                 <template v-else>
                   {{ column.label }}
                 </template>
@@ -45,7 +59,14 @@
           </thead>
         </table>
       </div>
-      <div class="mj-table-body__wrap">
+      <mj-scroll-view
+        class="mj-table-body__wrap"
+        :style="{
+          height: height && bodyHeight !== undefined ? bodyHeight + 'px' : '',
+          width: adaptiveTableFlag ? '' : tableWidth + 'px',
+          minWidth: adaptiveTableFlag ? tableWidth + 'px' : ''
+        }"
+      >
         <table
           :style="{
             width: adaptiveTableFlag ? '' : tableWidth + 'px',
@@ -72,11 +93,17 @@
                   >
                     <div v-if="column.type === 'slot'">
                       <slot
+                        v-if="['left', 'right'].indexOf(column.fixed) === -1"
                         :name="column.slotName || column.prop"
                         v-bind:row="row"
                         v-bind:column="column"
                         v-bind:index="i"
                       ></slot>
+                      <table-slot
+                        v-else
+                        :vvnode="$scopedSlots[column.slotName || column.prop]"
+                        :scope="{ row, column, i }"
+                      ></table-slot>
                     </div>
                     <div v-else>
                       {{
@@ -96,7 +123,7 @@
             </tr>
           </tbody>
         </table>
-      </div>
+      </mj-scroll-view>
     </mj-scroll-view>
     <div
       class="mj-table-fixed__wrap--left"
@@ -134,12 +161,19 @@
                   'text-align': column.align
                 }"
               >
-                <slot
-                  v-if="column.slotHeader"
-                  :name="column.prop + 'Header'"
-                  v-bind:column="column"
-                  v-bind:index="i"
-                ></slot>
+                <template v-if="column.slotHeader">
+                  <slot
+                    v-if="column.fixed === 'left'"
+                    :name="column.prop + 'Header'"
+                    v-bind:column="column"
+                    v-bind:index="i"
+                  ></slot>
+                  <table-slot
+                    v-else
+                    :vvnode="$scopedSlots[column.prop + 'Header']"
+                    :scope="{ column, i }"
+                  ></table-slot
+                ></template>
                 <template v-else>
                   {{ column.label }}
                 </template>
@@ -175,11 +209,17 @@
                   >
                     <div v-if="column.type === 'slot'">
                       <slot
+                        v-if="column.fixed === 'left'"
                         :name="column.slotName || column.prop"
                         v-bind:row="row"
                         v-bind:column="column"
                         v-bind:index="i"
                       ></slot>
+                      <table-slot
+                        v-else
+                        :vvnode="$scopedSlots[column.slotName || column.prop]"
+                        :scope="{ row, column, i }"
+                      ></table-slot>
                     </div>
                     <div v-else>
                       {{
@@ -237,12 +277,19 @@
                   'text-align': column.align
                 }"
               >
-                <slot
-                  v-if="column.slotHeader"
-                  :name="column.prop + 'Header'"
-                  v-bind:column="column"
-                  v-bind:index="i"
-                ></slot>
+                <template v-if="column.slotHeader">
+                  <slot
+                    v-if="column.fixed === 'right'"
+                    :name="column.prop + 'Header'"
+                    v-bind:column="column"
+                    v-bind:index="i"
+                  ></slot>
+                  <table-slot
+                    v-else
+                    :vvnode="$scopedSlots[column.prop + 'Header']"
+                    :scope="{ column, i }"
+                  ></table-slot
+                ></template>
                 <template v-else>
                   {{ column.label }}
                 </template>
@@ -278,11 +325,17 @@
                   >
                     <div v-if="column.type === 'slot'">
                       <slot
+                        v-if="column.fixed === 'right'"
                         :name="column.slotName || column.prop"
                         v-bind:row="row"
                         v-bind:column="column"
                         v-bind:index="i"
                       ></slot>
+                      <table-slot
+                        v-else
+                        :vvnode="$scopedSlots[column.slotName || column.prop]"
+                        :scope="{ row, column, i }"
+                      ></table-slot>
                     </div>
                     <div v-else>
                       {{
@@ -309,10 +362,20 @@
 <script>
 import MjScrollView from "../scrollView";
 import { addResizeListener, removeResizeListener } from "../utils/dom";
+const TableSlot = {
+  props: {
+    vvnode: Function,
+    scope: Object
+  },
+  render(h) {
+    return h("div", [this.vvnode(this.scope)]);
+  }
+};
 export default {
   name: "MjTable",
   components: {
-    MjScrollView
+    MjScrollView,
+    TableSlot
   },
   props: {
     data: {
@@ -331,6 +394,10 @@ export default {
       default: function() {
         return [];
       }
+    },
+    height: {
+      type: String,
+      default: ""
     }
   },
   computed: {
@@ -391,7 +458,8 @@ export default {
       colList: [],
       rightFixedNum: 0,
       leftFixedNum: 0,
-      scrollPosition: "left"
+      scrollPosition: "left",
+      bodyHeight: undefined
     };
   },
   methods: {
@@ -480,7 +548,19 @@ export default {
       }
     }
   },
+  updated() {
+    if (this.$refs.tableRootWrap && this.$refs.tableHeader) {
+      this.bodyHeight =
+        this.$refs.tableRootWrap.offsetHeight -
+        this.$refs.tableHeader.offsetHeight;
+    }
+  },
   mounted() {
+    if (this.$refs.tableRootWrap && this.$refs.tableHeader) {
+      this.bodyHeight =
+        this.$refs.tableRootWrap.offsetHeight -
+        this.$refs.tableHeader.offsetHeight;
+    }
     this.getColRealAttr();
     addResizeListener(this.$refs.tableRootWrap, this.getColRealAttr);
     this.$emit("hook:beforeDestroy", () => {
@@ -497,6 +577,9 @@ export default {
 .mj-table {
   position: relative;
   overflow: hidden;
+  .mj-table__header {
+    font-weight: bold;
+  }
   .mj-table-fixed__wrap--left {
     position: absolute;
     top: 0;

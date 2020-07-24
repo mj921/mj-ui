@@ -22,6 +22,7 @@ import TableDemo2 from "../example/table/TableDemo2";
 import TableDemo3 from "../example/table/TableDemo3";
 import TableDemo4 from "../example/table/TableDemo4";
 import TableDemo5 from "../example/table/TableDemo5";
+import TableDemo6 from "../example/table/TableDemo6";
 
 export default {
   name: "TablePage",
@@ -30,7 +31,8 @@ export default {
     TableDemo2,
     TableDemo3,
     TableDemo4,
-    TableDemo5
+    TableDemo5,
+    TableDemo6
   },
   data() {
     return {
@@ -65,12 +67,25 @@ export default {
           describe: "column 设置 fixed 为 left 或 right 固定列",
           demoUrl: "table/TableDemo5.vue",
           demoComp: TableDemo5
+        },
+        {
+          title: "表头固定",
+          describe: "设置height后就可以固定表头",
+          demoUrl: "table/TableDemo6.vue",
+          demoComp: TableDemo6
         }
       ],
       tableAttr: [
         {
           prop: "data",
           desc: "表格数据",
+          type: "object[]",
+          optional: "—",
+          defaultVal: "—"
+        },
+        {
+          prop: "columns",
+          desc: "表格列，具体参数看下方 columns 属性",
           type: "object[]",
           optional: "—",
           defaultVal: "—"
