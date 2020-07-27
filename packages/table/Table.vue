@@ -66,6 +66,7 @@
           width: adaptiveTableFlag ? '' : tableWidth + 'px',
           minWidth: adaptiveTableFlag ? tableWidth + 'px' : ''
         }"
+        @scroll="bodyScroll"
       >
         <table
           :style="{
@@ -182,7 +183,13 @@
           </thead>
         </table>
       </div>
-      <div class="mj-table-fixed__body--left">
+      <div
+        ref="leftFixedBody"
+        class="mj-table-fixed__body--left"
+        :style="{
+          height: height && bodyHeight !== undefined ? bodyHeight + 'px' : ''
+        }"
+      >
         <table
           :style="{
             width: adaptiveTableFlag ? '' : tableWidth + 'px',
@@ -298,7 +305,13 @@
           </thead>
         </table>
       </div>
-      <div class="mj-table-fixed__body--right">
+      <div
+        ref="rightFixedBody"
+        class="mj-table-fixed__body--right"
+        :style="{
+          height: height && bodyHeight !== undefined ? bodyHeight + 'px' : ''
+        }"
+      >
         <table
           :style="{
             width: adaptiveTableFlag ? '' : tableWidth + 'px',
@@ -546,6 +559,11 @@ export default {
       } else {
         this.scrollPosition = "middle";
       }
+    },
+    bodyScroll(e) {
+      const { leftFixedBody, rightFixedBody } = this.$refs;
+      leftFixedBody.scrollTop = e.target.scrollTop;
+      rightFixedBody.scrollTop = e.target.scrollTop;
     }
   },
   updated() {
@@ -590,6 +608,9 @@ export default {
     &.hidden-box-shadow {
       box-shadow: none;
     }
+    .mj-table-fixed__body--left {
+      overflow: hidden;
+    }
   }
   .mj-table-fixed__wrap--right {
     position: absolute;
@@ -611,6 +632,7 @@ export default {
       position: absolute;
       right: 0;
       bottom: 0;
+      overflow: hidden;
     }
   }
   table {

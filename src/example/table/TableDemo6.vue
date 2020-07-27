@@ -17,6 +17,7 @@ export default {
     return {
       columns: [
         {
+          fixed: "left",
           prop: "width",
           label: "宽",
           width: 200
@@ -34,9 +35,10 @@ export default {
         {
           prop: "address",
           label: "地址",
-          width: 200
+          width: 500
         },
         {
+          fixed: "right",
           prop: "area",
           label: "面积",
           type: "slot"
