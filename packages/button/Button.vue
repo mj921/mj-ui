@@ -8,6 +8,7 @@
         isdisabled: disabled
       }
     ]"
+    type="button"
     @click="_handleClick"
   >
     <slot></slot>

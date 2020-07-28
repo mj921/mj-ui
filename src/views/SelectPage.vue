@@ -43,7 +43,7 @@
       </mj-select>
     </mj-code>
     <mj-code title="可清空选项值" :code="code5">
-      <mj-select v-model="select5" clearabled>
+      <mj-select v-model="select5" clearable>
         <mj-option
           v-for="item in options5"
           :value="item.value"
@@ -173,7 +173,7 @@ export default {
           defaultVal: "false"
         },
         {
-          prop: "clearabled",
+          prop: "clearable",
           desc: "是否可清空选项值",
           type: "boolean",
           optional: "true | false",

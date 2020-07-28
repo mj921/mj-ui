@@ -16,11 +16,13 @@
 </template>
 
 <script>
+import Emitter from "../utils/emitter";
 import PickerPanel from "./PickerPanel";
 import clickoutsit from "../utils/directives/clickoutsit";
 import { dateFmt } from "../utils";
 export default {
   name: "MjDatePicker",
+  mixins: [Emitter],
   components: {
     PickerPanel
   },
@@ -92,6 +94,7 @@ export default {
         this.valueFormat ? dateFmt(dateObj, this.valueFormat) : dateObj
       );
       this.$emit("change", this.value, oldVal);
+      this.emitParentEvent("MjFormItem", "MjFormItem.change");
     },
     handlerClose() {
       this.panelVisible = false;
@@ -113,5 +116,8 @@ export default {
 <style lang="scss" scoped>
 .mj-date-picker {
   position: relative;
+  .mj-input {
+    width: 210px;
+  }
 }
 </style>

@@ -9,8 +9,10 @@
   </div>
 </template>
 <script>
+import Emitter from "../utils/emitter";
 export default {
   name: "MjRadio",
+  mixins: [Emitter],
   props: {
     value: {
       validator: val => {
@@ -57,6 +59,7 @@ export default {
             this.$emit("input", val);
           }
           this.$emit("change", val, currValue);
+          this.emitParentEvent("MjFormItem", "MjFormItem.change");
         }
       }
     }

@@ -19,6 +19,7 @@
     "lib": "vue-cli-service build --target lib --name majie-ui --dest lib packages/index.js"
   },
   "dependencies": {
+    "async-validator": "^3.3.0",
     "prismjs": "^1.16.0",
     "resize-observer-polyfill": "^1.5.1",
     "vue": "^2.6.6",

@@ -1,10 +1,6 @@
 <template>
   <div>
-    <mj-table
-      :data="data"
-      :columns="columns1"
-      v-if="type === 'attr'"
-    ></mj-table>
+    <mj-table :data="data" :columns="columns" v-if="show"></mj-table>
   </div>
 </template>
 <script>
@@ -16,6 +12,23 @@ export default {
       default: "attr"
     },
     data: Array
+  },
+  computed: {
+    columns() {
+      switch (this.type) {
+        case "attr":
+          return this.columns1;
+        case "event":
+          return this.columns2;
+        case "method":
+          return this.columns3;
+        default:
+          return [];
+      }
+    },
+    show() {
+      return ["attr", "event", "method"].indexOf(this.type) > -1;
+    }
   },
   data() {
     return {
@@ -55,12 +68,29 @@ export default {
         {
           prop: "desc",
           label: "说明",
-          width: 200
+          minWidth: 200
         },
         {
           prop: "callback",
-          label: "回调函数",
+          label: "回调参数",
           width: 200
+        }
+      ],
+      columns3: [
+        {
+          prop: "method",
+          label: "方法",
+          width: 100
+        },
+        {
+          prop: "desc",
+          label: "说明",
+          minWidth: 200
+        },
+        {
+          prop: "params",
+          label: "回调参数",
+          width: 300
         }
       ]
     };

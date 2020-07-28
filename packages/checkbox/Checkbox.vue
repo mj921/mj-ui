@@ -15,8 +15,10 @@
   </div>
 </template>
 <script>
+import Emitter from "../utils/emitter";
 export default {
   name: "MjCheckbox",
+  mixins: [Emitter],
   model: {
     prop: "checked",
     event: "change"
@@ -45,6 +47,7 @@ export default {
       if (!this.disabled) {
         this.mj_checked = !this.mj_checked;
         this.$emit("change", this.mj_checked);
+        this.emitParentEvent("MjFormItem", "MjFormItem.change");
       }
     },
     handleSelect() {

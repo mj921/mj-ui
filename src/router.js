@@ -34,6 +34,11 @@ export default new Router({
           component: () => import("./views/DialogPage.vue")
         },
         {
+          path: "/form",
+          name: "form",
+          component: () => import("./views/FormPage.vue")
+        },
+        {
           path: "/layout",
           name: "layout",
           component: () => import("./views/LayoutPage.vue")

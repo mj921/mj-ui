@@ -7,7 +7,7 @@
     }"
     @click="handleClick"
   >
-    {{ label }}
+    {{ label || value }}
   </div>
 </template>
 <script>

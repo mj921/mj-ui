@@ -56,9 +56,11 @@
 import MjTag from "../tag/index";
 import SelectOptionPanel from "./SelectOptionPanel";
 import clickoutsit from "../utils/directives/clickoutsit";
+import Emitter from "../utils/emitter";
 
 export default {
   name: "MjSelect",
+  mixins: [Emitter],
   directives: {
     clickoutsit
   },
@@ -82,7 +84,7 @@ export default {
       type: Boolean,
       default: false
     },
-    clearabled: {
+    clearable: {
       type: Boolean,
       default: false
     }
@@ -153,6 +155,7 @@ export default {
           this.options["option" + option.value].option.selectedOption(true);
           this.openFlag = false;
         }
+        this.emitParentEvent("MjFormItem", "MjFormItem.change");
       }
     };
   },
@@ -167,7 +170,7 @@ export default {
     },
     iconsMouseover() {
       if (
-        this.clearabled &&
+        this.clearable &&
         (this.value !== "" ||
           (this.value instanceof Array && this.value.length > 0))
       ) {

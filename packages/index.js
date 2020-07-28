@@ -20,6 +20,8 @@ import Dialog from "./dialog";
 import Message from "./message";
 import MessageBox from "./messageBox";
 import Notification from "./notification";
+import Form from "./form";
+import FormItem from "./formItem";
 
 const components = {
   Button,
@@ -27,6 +29,8 @@ const components = {
   Col,
   DatePicker,
   Dialog,
+  Form,
+  FormItem,
   Input,
   Menu,
   MenuItem,

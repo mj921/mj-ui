@@ -144,7 +144,7 @@ export default {
   code5: `
     <template>
       <div>
-        <mj-select v-model="select5" clearabled>
+        <mj-select v-model="select5" clearable>
           <mj-option
             v-for="item in options5"
             :value="item.value"

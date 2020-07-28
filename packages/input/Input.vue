@@ -12,8 +12,10 @@
   </div>
 </template>
 <script>
+import Emitter from "../utils/emitter";
 export default {
   name: "MjInput",
+  mixins: [Emitter],
   props: {
     value: {
       type: String,
@@ -32,9 +34,11 @@ export default {
     inputHandle() {
       this.$emit("input", this.$refs.input.value);
       this.$emit("change", this.$refs.input.value);
+      this.emitParentEvent("MjFormItem", "MjFormItem.change");
     },
     blurHandle(e) {
       this.$emit("blur", e);
+      this.emitParentEvent("MjFormItem", "MjFormItem.blur");
     },
     focusHandle(e) {
       this.$emit("focus", e);
@@ -48,8 +52,9 @@ export default {
 <style lang="scss" scoped>
 .mj-input {
   display: inline-block;
+  width: 100%;
   input {
-    width: 180px;
+    width: 100%;
     height: 40px;
     padding: 0 20px;
     @include box-sizing(border-box);
