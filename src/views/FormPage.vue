@@ -20,11 +20,13 @@
 </template>
 <script>
 import FormDemo1 from "../example/form/FormDemo1";
+import FormDemo2 from "../example/form/FormDemo2";
 
 export default {
   name: "FormPage",
   components: {
-    FormDemo1
+    FormDemo1,
+    FormDemo2
   },
   data() {
     return {
@@ -34,6 +36,12 @@ export default {
           describe: "基础的表格用法",
           demoUrl: "form/FormDemo1.vue",
           demoComp: FormDemo1
+        },
+        {
+          title: "表单校验",
+          describe: "表单校验 validate",
+          demoUrl: "form/FormDemo2.vue",
+          demoComp: FormDemo2
         }
       ],
       formAttr: [

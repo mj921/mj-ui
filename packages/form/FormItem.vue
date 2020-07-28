@@ -53,7 +53,9 @@ export default {
   methods: {
     validate(trigger) {
       if (!this.prop) return;
-      let rules = this.rules || (this.mjForm && this.mjForm.rules[this.prop]);
+      let rules =
+        this.rules ||
+        (this.mjForm && this.mjForm.rules && this.mjForm.rules[this.prop]);
       if (rules && trigger) {
         rules = rules.filter(
           item => item.trigger === trigger || item.trigger === undefined

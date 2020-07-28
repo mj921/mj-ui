@@ -1,6 +1,6 @@
 <template>
   <div>
-    <mj-form ref="form" v-model="form" label-width="80px">
+    <mj-form ref="form" v-model="form" label-width="80px" :rules="rules">
       <mj-form-item prop="name" label="姓名">
         <mj-input v-model="form.name" />
       </mj-form-item>
@@ -22,6 +22,7 @@
         <mj-checkbox v-model="form.hobby" label="2">足球</mj-checkbox>
         <mj-checkbox v-model="form.hobby" label="3">游戏</mj-checkbox>
       </mj-form-item>
+      <mj-button @click="submit">提交</mj-button>
     </mj-form>
   </div>
 </template>
@@ -36,8 +37,29 @@ export default {
         birthday: "",
         marriage: "",
         hobby: ""
+      },
+      rules: {
+        name: [{ required: true, message: "请输入姓名" }],
+        sex: [{ required: true, message: "请选择性别", trigger: "change" }],
+        birthday: [{ required: true, message: "请选择生日" }],
+        marriage: [{ required: true, message: "请选择婚姻" }],
+        hobby: [{ required: true, message: "请选择爱好" }]
       }
     };
+  },
+  methods: {
+    submit() {
+      this.$refs.form
+        .validate()
+        .then(() => {
+          this.$message.success("检验成功");
+          console.log(this.form);
+        })
+        .catch(error => {
+          console.log(error);
+          this.$message.error("校验失败");
+        });
+    }
   }
 };
 </script>
