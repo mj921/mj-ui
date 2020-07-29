@@ -29,7 +29,7 @@ export default {
       default: false
     },
     label: {
-      type: String,
+      type: [String, Number, Boolean],
       default: ""
     },
     disabled: {
@@ -48,11 +48,29 @@ export default {
         this.mj_checked = !this.mj_checked;
         this.$emit("change", this.mj_checked);
         this.emitParentEvent("MjFormItem", "MjFormItem.change");
+        this.emitParentEvent("MjCheckboxGroup", "MjCheckboxGroup.change");
       }
+    },
+    setChecked(checked) {
+      this.mj_checked = checked;
     },
     handleSelect() {
       return false;
     }
+  },
+  mounted() {
+    this.emitParentEvent(
+      "MjCheckboxGroup",
+      "MjCheckboxGroup.addCheckbox",
+      this
+    );
+    this.$on("hook:beforeDestroy", () => {
+      this.emitParentEvent(
+        "MjCheckboxGroup",
+        "MjCheckboxGroup.removeCheckbox",
+        this
+      );
+    });
   }
 };
 </script>

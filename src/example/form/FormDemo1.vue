@@ -18,9 +18,11 @@
         <mj-radio v-model="form.marriage" label="2">已婚</mj-radio>
       </mj-form-item>
       <mj-form-item prop="hobby" label="爱好">
-        <mj-checkbox v-model="form.hobby" label="1">篮球</mj-checkbox>
-        <mj-checkbox v-model="form.hobby" label="2">足球</mj-checkbox>
-        <mj-checkbox v-model="form.hobby" label="3">游戏</mj-checkbox>
+        <mj-checkbox-group v-model="form.hobby">
+          <mj-checkbox label="1">篮球</mj-checkbox>
+          <mj-checkbox label="2">足球</mj-checkbox>
+          <mj-checkbox label="3">游戏</mj-checkbox>
+        </mj-checkbox-group>
       </mj-form-item>
     </mj-form>
   </div>

@@ -22,10 +22,12 @@ import MessageBox from "./messageBox";
 import Notification from "./notification";
 import Form from "./form";
 import FormItem from "./formItem";
+import CheckboxGroup from "./checkboxGroup";
 
 const components = {
   Button,
   Checkbox,
+  CheckboxGroup,
   Col,
   DatePicker,
   Dialog,
