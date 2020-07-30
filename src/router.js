@@ -84,11 +84,6 @@ export default new Router({
           component: () => import("./views/SwitchPage.vue")
         },
         {
-          path: "/transfer",
-          name: "transfer",
-          component: () => import("./views/TransferPage.vue")
-        },
-        {
           path: "/table",
           name: "table",
           component: () => import("./views/TablePage.vue")
@@ -97,6 +92,16 @@ export default new Router({
           path: "/tag",
           name: "tag",
           component: () => import("./views/TagPage.vue")
+        },
+        {
+          path: "/tooltip",
+          name: "tooltip",
+          component: () => import("./views/TooltipPage.vue")
+        },
+        {
+          path: "/transfer",
+          name: "transfer",
+          component: () => import("./views/TransferPage.vue")
         }
       ],
       redirect: "/button"

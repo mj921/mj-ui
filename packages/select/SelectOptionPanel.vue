@@ -3,7 +3,6 @@
     <div
       v-show="visible"
       class="mj-select__option-panel"
-      :class="'mj-select__option-panel--' + popperPosition"
       :style="{
         height:
           optionNum >= 5 || optionNum === 0 ? '170px' : optionNum * 34 + 'px',
@@ -66,10 +65,6 @@ export default {
   &.fade-enter,
   &.fade-leave-to {
     opacity: 0;
-  }
-  &.mj-select__option-panel--top {
-    margin-top: -50px;
-    transform: translateY(-100%);
   }
 }
 </style>

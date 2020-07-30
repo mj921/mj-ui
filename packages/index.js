@@ -23,6 +23,7 @@ import Notification from "./notification";
 import Form from "./form";
 import FormItem from "./formItem";
 import CheckboxGroup from "./checkboxGroup";
+import Tooltip from "./tooltip";
 
 const components = {
   Button,
@@ -46,6 +47,7 @@ const components = {
   Switch,
   Table,
   Tag,
+  Tooltip,
   Transfer
 };
 export default {

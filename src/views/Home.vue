@@ -88,6 +88,9 @@
             <mj-menu-item @click="routerPush('/dialog')" index="dialog">
               Dialog 对话框
             </mj-menu-item>
+            <mj-menu-item @click="routerPush('/tooltip')" index="tooltip">
+              Tooltip 文字提示
+            </mj-menu-item>
           </mj-sub-menu>
         </mj-menu>
       </mj-scroll-view>
