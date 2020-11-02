@@ -24,6 +24,11 @@ export default new Router({
           component: () => import("./views/CheckboxPage.vue")
         },
         {
+          path: "/colorSelector",
+          name: "colorSelector",
+          component: () => import("./views/ColorSelectorPage.vue")
+        },
+        {
           path: "/datepicker",
           name: "datepicker",
           component: () => import("./views/DatePickerPage.vue")

@@ -24,12 +24,14 @@ import Form from "./form";
 import FormItem from "./formItem";
 import CheckboxGroup from "./checkboxGroup";
 import Tooltip from "./tooltip";
+import ColorSelector from "./colorSelector";
 
 const components = {
   Button,
   Checkbox,
   CheckboxGroup,
   Col,
+  ColorSelector,
   DatePicker,
   Dialog,
   Form,

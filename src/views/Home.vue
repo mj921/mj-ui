@@ -85,6 +85,12 @@
             <template slot="title">
               其他
             </template>
+            <mj-menu-item
+              @click="routerPush('/colorSelector')"
+              index="colorSelector"
+            >
+              ColorSelector 颜色选择器
+            </mj-menu-item>
             <mj-menu-item @click="routerPush('/dialog')" index="dialog">
               Dialog 对话框
             </mj-menu-item>

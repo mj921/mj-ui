@@ -206,7 +206,11 @@ export default {
       this._popperMask._mj_parentEl.removeChild(this._popperMask);
     }
     if (this.appendToBody && this._isRenderPopper) {
-      document.body.removeChild(this.$el);
+      try {
+        document.body.removeChild(this.$el);
+      } catch (e) {
+        console.log();
+      }
     }
   }
 };
